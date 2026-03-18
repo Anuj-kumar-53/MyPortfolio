@@ -12,7 +12,7 @@ export const projects = [
     subtitle: 'CPU Scheduler & DSA Visualizer',
     description:
       'Interactive MERN platform simulating all major CPU scheduling algorithms (FCFS, SJF, RR, Priority) with step-by-step DSA visualizations, OAuth login, real-time animation controls, and complexity analysis.',
-    image: '/public/assets/algo.png',
+    image: '/assets/algo.png',
     tech: ['React', 'Node.js', 'MongoDB', 'D3.js', 'JWT', 'OAuth', 'Tailwind'],
     github: 'https://github.com/Anuj-kumar-53/CPU-Scheduler',
     live: 'https://cpu-scheduler-taupe.vercel.app/',
@@ -28,7 +28,7 @@ export const projects = [
     subtitle: 'AgriTech Platform',
     description:
       'Scalable platform helping farmers discover government schemes and get AI-powered crop recommendations based on soil type, season, and region. Integrates Gemini AI for NL queries and real-time weather.',
-    image: '/public/assets/efarmer.png',
+    image: '/assets/efarmer.png',
     tech: ['React', 'Node.js', 'MongoDB', 'Express', 'Gemini AI', 'Weather API'],
     github: 'https://github.com/Anuj-kumar-53/Efarma',
     live: 'https://efarming-dun.vercel.app/',
