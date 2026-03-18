@@ -216,7 +216,7 @@ const skills = [
 ]
 
 const stats = [
-  { value: '300+', label: 'DSA Problems', icon: Code2, color: '#6366f1' },
+  { value: '500+', label: 'DSA Problems', icon: Code2, color: '#6366f1' },
   { value: '8.11', label: 'CGPA at LPU', icon: BookOpen, color: '#a855f7' },
   { value: '10+', label: 'Projects Built', icon: Server, color: '#3b82f6' },
   { value: 'Top 10', label: 'Hackathons', icon: Trophy, color: '#06b6d4' },
@@ -225,7 +225,7 @@ const stats = [
 const achievements = [
   { icon: '🏆', text: 'Ranked 461 / 10,000+ in CodeClash — The August Arena' },
   { icon: '🥇', text: 'Top 10 in Trinetra Web Hackathon — AI mental health solution' },
-  { icon: '💡', text: '300+ DSA problems on LeetCode, Coding Ninjas & GFG' },
+  { icon: '💡', text: '500+ DSA problems on LeetCode, Coding Ninjas & GFG' },
 ]
 
 const softSkills = ['Time Management', 'Leadership', 'Problem Solving', 'Adaptability']
