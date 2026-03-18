@@ -34,7 +34,7 @@ export const projects = [
     live: 'https://efarming-dun.vercel.app/',
     featured: true,
     color: '#22c55e',
-    category: 'AI / Full Stack',
+    category: 'Full Stack',
     year: 2024,
     stats: [{ label: 'Schemes', value: '200+' }, { label: 'Languages', value: '5' }],
   },
@@ -50,7 +50,7 @@ export const projects = [
     live: 'https://wpdaddy.com/wp-content/uploads/2017/04/Best-Coming-Soon-and-404-Error-Page-Templates-for-Your-Unique-Websites.jpg',
     featured: true,
     color: '#f59e0b',
-    category: 'Real-time / Full Stack',
+    category: 'Full Stack',
     year: 2024,
     stats: [{ label: 'Players', value: '1k+' }, { label: 'Latency', value: '<50ms' }],
   },
@@ -68,7 +68,7 @@ export const projects = [
     live: 'https://wpdaddy.com/wp-content/uploads/2017/04/Best-Coming-Soon-and-404-Error-Page-Templates-for-Your-Unique-Websites.jpg',
     featured: false,
     color: '#22c55e',
-    category: 'Web App',
+    category: 'Full Stack',
     year: 2024,
     stats: [
       { label: 'Tasks Managed', value: '1k+' },
@@ -106,7 +106,7 @@ export const projects = [
     live: 'https://wpdaddy.com/wp-content/uploads/2017/04/Best-Coming-Soon-and-404-Error-Page-Templates-for-Your-Unique-Websites.jpg',
     featured: false,
     color: '#f59e0b',
-    category: 'Web Application',
+    category: 'Web App',
     year: 2024,
     stats: [
       { label: 'Pets Listed', value: '50+' },
@@ -125,7 +125,7 @@ export const projects = [
     live: 'https://wpdaddy.com/wp-content/uploads/2017/04/Best-Coming-Soon-and-404-Error-Page-Templates-for-Your-Unique-Websites.jpg',
     featured: false,
     color: '#06b6d4',
-    category: 'AI / Web App',
+    category: 'Web App',
     year: 2024,
     stats: [
       { label: 'Features', value: 'Chat + Image + Mood' },
@@ -144,7 +144,7 @@ export const projects = [
     live: 'https://wpdaddy.com/wp-content/uploads/2017/04/Best-Coming-Soon-and-404-Error-Page-Templates-for-Your-Unique-Websites.jpg',
     featured: false,
     color: '#0ea5e9',
-    category: 'Backend / Full Stack',
+    category: 'Full Stack',
     year: 2024,
     stats: [
       { label: 'Posts', value: '100+' },
@@ -163,7 +163,7 @@ export const projects = [
     live: 'https://wpdaddy.com/wp-content/uploads/2017/04/Best-Coming-Soon-and-404-Error-Page-Templates-for-Your-Unique-Websites.jpg',
     featured: false,
     color: '#10b981',
-    category: 'Backend / Web App',
+    category: 'Web App',
     year: 2024,
     stats: [
       { label: 'Links', value: '100+' },
