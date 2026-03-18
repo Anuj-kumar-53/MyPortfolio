@@ -198,8 +198,8 @@ const Certifications = ({ isDark }) => {
                         <div className={`absolute inset-0 bg-gradient-to-br ${activeData.gradient} opacity-40 transition-all duration-700`} />
 
                         {/* Huge floating icon background */}
-                        <div className={`absolute -right-16 -bottom-16 sm:right-[-10%] sm:bottom-[-20%] opacity-10 pointer-events-none transition-all duration-1000 transform group-hover:scale-110 group-hover:-rotate-12`}>
-                            <activeData.icon className={`w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] ${activeData.text}`} />
+                        <div className={`absolute -right-12 -bottom-12 sm:right-[-10%] sm:bottom-[-20%] opacity-10 pointer-events-none transition-all duration-1000 transform group-hover:scale-110 group-hover:-rotate-12`}>
+                            <activeData.icon className={`w-[250px] h-[250px] sm:w-[500px] sm:h-[500px] ${activeData.text}`} />
                         </div>
 
                         {/* Spotlight Content */}
@@ -219,7 +219,7 @@ const Certifications = ({ isDark }) => {
                                 </div>
 
                                 <div className="overflow-hidden">
-                                    <h3 className={`font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 ${activeData.text} leading-tight drop-shadow-md`}>
+                                    <h3 className={`font-display text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 ${activeData.text} leading-tight drop-shadow-md`}>
                                         {activeData.title}
                                     </h3>
                                 </div>

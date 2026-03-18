@@ -5,6 +5,39 @@ import { Code2, Server, Globe, Cpu, Users, Star, Terminal, Layers, BookOpen, Tro
 /* ══════════════════════════════════════════════════════════════════
    Inline SVG icons for each technology
 ═══════════════════════════════════════════════════════════════════ */
+const skills2 = [
+    "JavaScript",
+    "TypeScript",
+    "Python",
+    "C++",
+    "Java",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "PostgreSQL",
+    "MySQL",
+    "WebSockets",
+    "Socket.io",
+    "Gemini AI",
+    "Stripe",
+    "Docker",
+    "Git",
+    "GitHub",
+    "REST APIs",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Django",
+];
+
+const row1 = skills2.slice(0, 8);
+const row2 = skills2.slice(8, 16);
+const row3 = skills2.slice(16);
+
+
+
+
 const TechIcon = ({ name, size = 18 }) => {
   const icons = {
     // ── Languages
@@ -294,7 +327,7 @@ export default function About({ isDark }) {
 
             </motion.p>
             <h2 className={`font-display font-black mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.2rem)', letterSpacing: '-0.02em' }}>
+              style={{ fontSize: 'clamp(1.8rem, 8vw, 3.2rem)', letterSpacing: '-0.02em' }}>
               About <span className="gradient-text">Me</span>
             </h2>
             <motion.div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
@@ -302,10 +335,10 @@ export default function About({ isDark }) {
           </motion.div>
 
           {/* Row 1: Bio + Stats */}
-          <div className="grid lg:grid-cols-5 gap-5 mb-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-5">
 
             {/* Bio card */}
-            <motion.div variants={fadeRight} className="lg:col-span-3">
+            <motion.div variants={fadeRight} className="md:col-span-2 lg:col-span-3">
               <TiltCard className={`relative p-8 rounded-3xl overflow-hidden h-full ${glass}`}>
                 {isDark && <>
                   <div className="absolute -top-12 -right-12 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -360,31 +393,66 @@ export default function About({ isDark }) {
               </TiltCard>
             </motion.div>
 
-            {/* Stats */}
-            <motion.div variants={fadeUp} className="lg:col-span-2 grid grid-cols-2 gap-4">
-              {stats.map(({ value, label, icon: Icon, color }, i) => (
-                <TiltCard key={label}>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }} animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.2 + i * 0.1, type: 'spring' }}
-                    className={`relative p-5 rounded-2xl overflow-hidden flex flex-col justify-between cursor-default h-full ${glass}`}>
-                    <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                      style={{ background: `radial-gradient(circle at 50% 50%, ${color}18, transparent 70%)` }} />
-                    <motion.div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3 relative z-10"
-                      style={{ background: `${color}20`, color }}
-                      whileHover={{ rotate: [0, -12, 12, 0], transition: { duration: 0.4 } }}>
-                      <Icon size={16} />
-                    </motion.div>
-                    <div className="relative z-10">
-                      <motion.span key={inView} initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                        className="block font-display font-black text-2xl gradient-text">{value}</motion.span>
-                      <p className={`text-xs font-mono mt-0.5 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>{label}</p>
+            {/* dp*/}
+            <div className="md:col-span-2 lg:col-span-2 rounded-3xl bg-linear-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-xl p-6 overflow-hidden flex flex-col gap-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] relative self-stretch">
+                    <h3 className="text-xl gradient-text font-semibold leading-tight">
+                    Always exploring new technologies
+                    </h3>
+
+                    <div className="space-y-4 flex-1 flex flex-col justify-start min-h-0">
+
+                        <div className="overflow-hidden">
+                            <div className="flex w-max gap-3 animate-marquee-left">
+                                {[...row1, ...row1].map((tech, i) => (
+                                    <span
+                                        key={`r1-${i}`}
+                                        className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono text-white/70 whitespace-nowrap"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="overflow-hidden">
+                            <div className="flex w-max gap-3 animate-marquee-right">
+                                {[...row2, ...row2].map((tech, i) => (
+                                    <span
+                                        key={`r2-${i}`}
+                                        className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono text-white/70 whitespace-nowrap"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="overflow-hidden">
+                            <div className="flex w-max gap-3 animate-marquee-left-slow">
+                                {[...row3, ...row3].map((tech, i) => (
+                                    <span
+                                        key={`r3-${i}`}
+                                        className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono text-white/70 whitespace-nowrap"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="flex-1 flex items-center justify-center min-h-0 mt-4 md:mt-6 pb-4 md:pb-0">
+                            <img
+                                src="/assets/anuj2.jpg"
+                                alt="Profile"
+                                className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border border-white/20 shadow-lg shrink-0 object-cover"
+                                priority
+                            />
+                        </div>
+
                     </div>
-                  </motion.div>
-                </TiltCard>
-              ))}
-            </motion.div>
+                </div>
+
+          
           </div>
 
           {/* Skills */}

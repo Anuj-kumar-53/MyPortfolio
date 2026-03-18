@@ -58,58 +58,116 @@ const education = [
 export default function Education({ isDark }) {
   const sectionRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) return
     const section = sectionRef.current
     if (!section) return
 
     const onScroll = () => {
       const rect = section.getBoundingClientRect()
-      // rect.top goes from 0 → -(totalScrollHeight - vh) as we scroll through
       const totalScrollable = section.offsetHeight - window.innerHeight
       if (totalScrollable <= 0) return
-
-      // How far have we scrolled within the pinned section (0 → 1)
       const scrolled = Math.max(0, Math.min(1, -rect.top / totalScrollable))
-
-      // Divide scrolled range evenly among entries
       const idx = Math.min(education.length - 1, Math.floor(scrolled * education.length))
       setActiveIndex(idx)
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isMobile])
+
+  if (isMobile) {
+    return (
+      <section id="education" className={`section-padding ${isDark ? 'bg-dark-bg' : 'bg-gray-100'}`}>
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="mb-12 text-center">
+            <h2 className={`font-display font-bold text-3xl mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Education <span className="gradient-text">Timeline</span>
+            </h2>
+            <div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" />
+          </div>
+          <div className="space-y-6">
+            {education.map((edu) => (
+              <motion.div
+                key={edu.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={`p-6 rounded-3xl border ${isDark ? 'bg-white/[0.04] border-white/10' : 'bg-white border-gray-100 shadow-sm'}`}
+              >
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className={`text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full ${edu.status === 'Ongoing' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'}`}>
+                      {edu.status}
+                    </span>
+                    <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10" style={{ color: edu.accent, borderColor: `${edu.accent}33` }}>
+                      {edu.score} {edu.scoreLabel}
+                    </span>
+                  </div>
+                  <h3 className={`font-display font-bold text-xl leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{edu.degree}</h3>
+                  <p className="font-semibold text-sm" style={{ color: edu.accent }}>{edu.field}</p>
+                  
+                  <div className="flex flex-col gap-3 my-2">
+                    {[
+                      { icon: <GraduationCap size={15} />, text: edu.institution },
+                      { icon: <MapPin size={15} />, text: edu.location },
+                      { icon: <Calendar size={15} />, text: edu.duration },
+                    ].map(({ icon, text }, i) => (
+                      <div key={i} className={`flex items-start gap-3 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                         <span style={{ color: edu.accent }} className="mt-0.5">{icon}</span>
+                         {text}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 border-t border-dashed border-white/10">
+                    <p className={`text-[10px] font-mono uppercase tracking-widest mb-3 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Key Courses</p>
+                    <div className="flex flex-wrap gap-2">
+                      {edu.courses.slice(0, 6).map(c => (
+                        <span key={c} className="px-2.5 py-1 rounded-lg text-[10px] font-medium" style={{ background: `${edu.accent}15`, color: edu.accent, border: `1px solid ${edu.accent}30` }}>
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   const edu = education[activeIndex]
 
   return (
-    /*
-      Outer wrapper height = 100vh * (entries + 1) so we get
-      1 screen-worth of scroll per entry.
-    */
     <div
       id="education"
       ref={sectionRef}
       style={{ height: `${(education.length + 0.5) * 100}vh` }}
       className="relative"
     >
-      {/* Sticky panel */}
       <div
         className={`sticky top-0 w-full h-screen overflow-hidden flex flex-col ${isDark ? 'bg-dark-bg' : 'bg-gray-100'
           }`}
       >
-        {/* ── Section header (stays fixed) ─────────────────────── */}
         <div className="pt-24 pb-6 px-8 text-center flex-shrink-0">
-
           <h2
             className={`font-display font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
             style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)' }}
           >
             Education <span className="gradient-text">Timeline</span>
           </h2>
-
-          {/* Step dots */}
           <div className="flex items-center justify-center gap-3 mt-4">
             {education.map((e, i) => (
               <motion.div
@@ -125,10 +183,7 @@ export default function Education({ isDark }) {
           </div>
         </div>
 
-        {/* ── Main content (changes on scroll) ─────────────────── */}
         <div className="flex-1 flex items-center px-8 lg:px-16 max-w-7xl mx-auto w-full gap-12 pb-16">
-
-          {/* Left: Info */}
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
               <motion.div
@@ -138,7 +193,6 @@ export default function Education({ isDark }) {
                 exit={{ opacity: 0, x: 48 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                {/* Status + score row */}
                 <div className="flex items-center gap-3 mb-4">
                   <span
                     className={`text-xs font-mono px-3 py-1 rounded-full ${edu.status === 'Ongoing'
@@ -161,8 +215,6 @@ export default function Education({ isDark }) {
                     {edu.score} {edu.scoreLabel}
                   </span>
                 </div>
-
-                {/* Degree */}
                 <h3
                   className={`font-display font-bold leading-tight mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}
                   style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)' }}
@@ -172,8 +224,6 @@ export default function Education({ isDark }) {
                 <p className="font-semibold text-base mb-5" style={{ color: edu.accent }}>
                   {edu.field}
                 </p>
-
-                {/* Meta */}
                 <div className="flex flex-wrap gap-5 mb-7">
                   {[
                     { icon: <BookOpen size={14} />, text: edu.institution },
@@ -189,8 +239,6 @@ export default function Education({ isDark }) {
                     </span>
                   ))}
                 </div>
-
-                {/* Courses */}
                 <div className="mb-6">
                   <p className={`text-xs font-mono uppercase tracking-widest mb-2.5 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
                     Key Courses
@@ -211,8 +259,6 @@ export default function Education({ isDark }) {
                     ))}
                   </div>
                 </div>
-
-                {/* Achievements */}
                 <div>
                   <p className={`text-xs font-mono uppercase tracking-widest mb-2.5 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
                     Achievements
@@ -229,8 +275,6 @@ export default function Education({ isDark }) {
               </motion.div>
             </AnimatePresence>
           </div>
-
-          {/* Right: Institution image */}
           <div className="hidden lg:flex flex-shrink-0 w-[42%] items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -241,12 +285,10 @@ export default function Education({ isDark }) {
                 transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                 className="relative w-full"
               >
-                {/* Glow behind image */}
                 <div
                   className="absolute inset-0 rounded-3xl blur-2xl opacity-30"
                   style={{ background: `radial-gradient(ellipse, ${edu.accent} 0%, transparent 70%)` }}
                 />
-                {/* Image frame */}
                 <div
                   className="relative rounded-3xl overflow-hidden"
                   style={{
@@ -260,7 +302,6 @@ export default function Education({ isDark }) {
                     style={{ height: 340 }}
                     loading="lazy"
                   />
-                  {/* Overlay label */}
                   <div
                     className="absolute bottom-0 left-0 right-0 px-5 py-4"
                     style={{
@@ -271,8 +312,6 @@ export default function Education({ isDark }) {
                     <p className="text-white/70 text-sm font-mono">{edu.duration}</p>
                   </div>
                 </div>
-
-                {/* Corner accent */}
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
@@ -288,7 +327,6 @@ export default function Education({ isDark }) {
           </div>
         </div>
 
-        {/* Scroll hint at bottom */}
         <div className="flex-shrink-0 pb-6 flex flex-col items-center gap-1">
           <p className={`text-xs font-mono ${isDark ? 'text-gray-600' : 'text-gray-500'}`}>
             {activeIndex < education.length - 1 ? 'scroll for next' : 'scroll to continue'}

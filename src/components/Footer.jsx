@@ -29,7 +29,7 @@ export default function Footer({ isDark }) {
               <Code2 size={16} className="text-indigo-500" />
             </div>
             <span className={`font-display font-bold text-lg ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Anuj<span className="gradient-text">.</span>
+             Portfolio
             </span>
           </div>
 

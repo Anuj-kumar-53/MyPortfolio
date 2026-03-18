@@ -27,23 +27,29 @@ export default function Contact({ isDark }) {
     setStatus('loading')
 
     try {
-      // Replace with your EmailJS credentials
-      const { default: emailjs } = await import('emailjs-com')
-      await emailjs.send(
-        'YOUR_SERVICE_ID',     // 🔧 Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID',    // 🔧 Replace with your EmailJS template ID
-        {
-          from_name: form.name,
-          from_email: form.email,
-          message: form.message,
-          to_name: 'Anuj Kumar',
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        'YOUR_PUBLIC_KEY'      // 🔧 Replace with your EmailJS public key
-      )
-      setStatus('success')
-      setForm({ name: '', email: '', message: '' })
+        body: JSON.stringify({
+          access_key: "04093882-08f3-40ff-a7d9-7019118ec308", // 🔧 Get your key from https://web3forms.com/
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success')
+        setForm({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
     } catch (err) {
-      console.error('EmailJS error:', err)
+      console.error('Web3Forms error:', err)
       setStatus('error')
     }
 
@@ -93,7 +99,7 @@ export default function Contact({ isDark }) {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10">
           {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -161,7 +167,7 @@ export default function Contact({ isDark }) {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className={`p-7 rounded-2xl ${isDark
+              className={`p-5 sm:p-8 rounded-2xl ${isDark
                   ? 'bg-dark-card border border-dark-border/60'
                   : 'bg-white border border-gray-200 shadow-sm'
                 }`}

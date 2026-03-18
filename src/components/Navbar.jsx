@@ -112,8 +112,7 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -60, scale: 0.92 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-4 left-1/2 z-50"
-            style={{ transform: 'translateX(-50%)' }}
+            className="fixed top-2 sm:top-4 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 z-50 w-auto sm:w-max"
           >
             <div
               className={`flex items-center gap-2 h-12 px-4 rounded-full backdrop-blur-2xl border transition-all ${isDark
@@ -167,7 +166,7 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
                 : 'bg-white/96 border border-indigo-100'
               } shadow-2xl`}
           >
-            <div className="p-3 flex flex-col gap-1 max-h-[calc(100vh-8rem)] overflow-y-auto">
+            <div className="p-3 flex flex-col gap-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.label}
@@ -187,6 +186,27 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
                   {item.label}
                 </motion.button>
               ))}
+
+              {/* Mobile Resume button */}
+              <motion.a
+                href="/assets/Anuj_Kumar_Resume.pdf"
+                download="Anuj_Kumar_Resume.pdf"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className={`mt-2 flex items-center justify-center gap-2 w-full py-4 rounded-xl font-body font-bold text-sm ${
+                  isDark
+                    ? 'bg-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+                    : 'bg-indigo-600 text-white shadow-[0_0_20px_rgba(79,70,229,0.3)]'
+                }`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Resume
+              </motion.a>
             </div>
           </motion.div>
         )}
@@ -214,10 +234,10 @@ function Logo({ isDark, onClick, compact }) {
       </div>
       {!compact && (
         <span
-          className={`font-display font-bold text-lg tracking-tight ${isDark ? 'text-white' : 'text-gray-900'
+          className={`font-display font-bold text-lg tracking-tight  ${isDark ? 'text-white' : 'text-gray-900'
             }`}
         >
-          Anuj<span className="gradient-text">.</span>
+          Portfolio
         </span>
       )}
     </motion.div>

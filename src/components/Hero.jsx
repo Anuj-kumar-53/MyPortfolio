@@ -122,7 +122,7 @@ export default function Hero({ isDark }) {
             <motion.h1
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}
               className={`font-display font-bold leading-tight mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
-              style={{ fontSize: 'clamp(2.2rem, 5vw, 3.5rem)' }}
+              style={{ fontSize: 'clamp(2.1rem, 7vw, 4rem)' }}
             >
               Hello, I'm{' '}
               <span className="gradient-text block">Anuj Kumar</span>
@@ -187,30 +187,61 @@ export default function Hero({ isDark }) {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center gap-10"
           >
-            {/* Profile image */}
-            <div className="relative">
-              <motion.div
-                animate={{ rotate: 360 }} transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 rounded-full"
-                style={{ background: 'conic-gradient(from 0deg, #6366f1, #a855f7, #3b82f6, #6366f1)', padding: '3px', borderRadius: '50%' }}
-              >
-                <div className={`w-full h-full rounded-full ${isDark ? 'bg-dark-bg' : 'bg-gray-100'}`} />
-              </motion.div>
-              <motion.div
-                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 3, repeat: Infinity }}
-                className="absolute inset-0 rounded-full blur-2xl"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)' }}
-              />
-              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }} className="relative z-10 p-3">
-                <img
-                  src="/assets/anuj2.jpg"
-                  alt="Anuj Kumar"
-                  className="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover"
-                  style={{ border: '4px solid transparent' }}
-                  loading="lazy"
-                />
-              </motion.div>
-            </div>
+           {/* Profile image */}
+<div className="relative w-44 h-44 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80">
+
+{/* Rotating gradient border */}
+<motion.div
+  animate={{ rotate: 360 }}
+  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+  className="absolute inset-0 rounded-full overflow-hidden"
+  style={{
+    background:
+      "conic-gradient(from 0deg, #6366f1, #a855f7, #3b82f6, #6366f1)",
+    padding: "3px",
+    borderRadius: "50%",
+  }}
+>
+  <div
+    className={`w-full h-full rounded-full ${
+      isDark ? "bg-dark-bg" : "bg-gray-100"
+    }`}
+  />
+</motion.div>
+
+{/* Glow */}
+<motion.div
+  animate={{
+    scale: [1, 1.1, 1],
+    opacity: [0.3, 0.6, 0.3],
+  }}
+  transition={{ duration: 3, repeat: Infinity }}
+  className="absolute inset-0 rounded-full blur-2xl"
+  style={{
+    background: "linear-gradient(135deg, #6366f1, #a855f7)",
+  }}
+/>
+
+{/* Image */}
+<motion.div
+  animate={{ y: [0, -8, 0] }}
+  transition={{
+    duration: 11,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="relative z-10 flex items-center justify-center w-full h-full"
+>
+  <img
+    src="/assets/anuj2.jpg"
+    alt="Anuj Kumar"
+    className="w-36 h-36 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 rounded-full object-cover"
+    style={{ border: "4px solid transparent" }}
+    loading="lazy"
+  />
+</motion.div>
+
+</div>
 
             {/*
               Invisible bounding chamber — no background, no border, no shadow.

@@ -102,7 +102,7 @@ export default function Resume({ isDark }) {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className={`p-8 rounded-2xl mb-10 ${
+          className={`p-6 sm:p-8 rounded-2xl mb-10 ${
             isDark
               ? 'bg-dark-card border border-dark-border/60'
               : 'bg-white border border-gray-200 shadow-sm'

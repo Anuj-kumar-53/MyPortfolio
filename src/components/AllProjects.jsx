@@ -231,6 +231,14 @@ export default function AllProjects({ isDark: _isDark, onBack }) {
   const [selected, setSelected] = useState(null)
   const [mode, setMode]       = useState('chamber') // 'chamber' | 'grid'
   const [isDark, setIsDark]   = useState(_isDark)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     if (!document.getElementById('ap-fonts')) {
@@ -282,7 +290,7 @@ export default function AllProjects({ isDark: _isDark, onBack }) {
           )}
         </div>
         {/* ── Top bar ─────────────────────────────────────── */}
-        <div style={{ flexShrink: 0, padding: '40px 60px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 32, background: bg, zIndex: 10, minHeight: '120px' }}>
+        <div style={{ flexShrink: 0, padding: isMobile ? '24px 20px' : '40px 60px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: isMobile ? 16 : 32, background: bg, zIndex: 10, minHeight: isMobile ? 'auto' : '120px' }}>
 
           {/* back */}
           <button onClick={onBack}
@@ -351,8 +359,12 @@ export default function AllProjects({ isDark: _isDark, onBack }) {
               ) : (
                 <div style={{ flex: 1, display: 'flex', gap: 24, padding: '0 14px', minHeight: 0, maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
                   <DriftColumn key={`c1-${cat}-${search}`} items={safe(col1)} isDark={isDark} onClick={setSelected} direction={1}  chamberBg={chamberBg} />
-                  <DriftColumn key={`c2-${cat}-${search}`} items={safe(col2)} isDark={isDark} onClick={setSelected} direction={-1} chamberBg={chamberBg} />
-                  <DriftColumn key={`c3-${cat}-${search}`} items={safe(col3)} isDark={isDark} onClick={setSelected} direction={1}  chamberBg={chamberBg} />
+                  {!isMobile && (
+                    <>
+                      <DriftColumn key={`c2-${cat}-${search}`} items={safe(col2)} isDark={isDark} onClick={setSelected} direction={-1} chamberBg={chamberBg} />
+                      <DriftColumn key={`c3-${cat}-${search}`} items={safe(col3)} isDark={isDark} onClick={setSelected} direction={1}  chamberBg={chamberBg} />
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -368,7 +380,7 @@ export default function AllProjects({ isDark: _isDark, onBack }) {
                 <button onClick={() => { setSearch(''); setCat('All') }} style={{ fontFamily: 'Fira Code', fontSize: 11, color: fgSub, textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}>clear filters</button>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 24, maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
                 {filtered.map((p, i) => <GridCard key={p.id || i} project={p} isDark={isDark} onClick={setSelected} />)}
               </div>
             )}

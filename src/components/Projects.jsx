@@ -112,9 +112,9 @@ export function ProjectCard({ project, index, isDark, inView }) {
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.65, delay: index * 0.13, ease: [0.16, 1, 0.3, 1] }}
-      className="group sticky flex flex-col lg:flex-row rounded-[2rem] overflow-hidden w-full"
+      className="group lg:sticky flex flex-col lg:flex-row rounded-[2rem] overflow-hidden w-full lg:top-[8rem]"
       style={{
-        top: `calc(8rem + ${index * 1.5}rem)`,
+        marginTop: index > 0 ? 'inline-block' : '0', // Spacer
         background: isDark
           ? 'linear-gradient(145deg, #13111f 0%, #1a1730 100%)'
           : 'linear-gradient(145deg, #ffffff 0%, #f5f3ff 100%)',
@@ -131,7 +131,7 @@ export function ProjectCard({ project, index, isDark, inView }) {
       />
 
       {/* Left side: Body */}
-      <div className="flex flex-col flex-1 p-8 lg:p-12 gap-5 relative z-10 order-2 lg:order-1">
+      <div className="flex flex-col flex-1 p-6 sm:p-8 lg:p-12 gap-5 relative z-10 order-2 lg:order-1">
         {/* Title row */}
         <div>
           <h3
