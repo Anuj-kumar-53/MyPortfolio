@@ -162,8 +162,8 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
             exit={{ opacity: 0, y: -10, scale: 0.97 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className={`fixed top-[4.5rem] left-4 right-4 z-40 rounded-2xl overflow-hidden backdrop-blur-2xl ${isDark
-                ? 'bg-[#130f2a]/96 border border-indigo-500/20'
-                : 'bg-white/96 border border-indigo-100'
+              ? 'bg-[#130f2a]/96 border border-indigo-500/20'
+              : 'bg-white/96 border border-indigo-100'
               } shadow-2xl`}
           >
             <div className="p-3 flex flex-col gap-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
