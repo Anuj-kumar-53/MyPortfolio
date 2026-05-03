@@ -35,16 +35,16 @@ export default function Resume({ isDark }) {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <p className={`font-mono text-sm mb-3 ${isDark ? 'text-indigo-400' : 'text-indigo-500'}`}>
+          <p className={`font-mono text-sm mb-3 ${isDark ? 'text-[#D4AF37]' : 'text-indigo-500'}`}>
             // what i know
           </p>
           <h2
-            className={`font-display font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
+            className={`font-display font-bold mb-4 ${isDark ? 'text-[#F5EFEB]' : 'text-gray-900'}`}
             style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
           >
             Skills & <span className="gradient-text">Resume</span>
           </h2>
-          <div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" />
+          <div className={`w-16 h-1 mx-auto rounded-full ${isDark ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8860B]' : 'bg-gradient-to-r from-indigo-500 to-purple-500'}`} />
         </motion.div>
 
         {/* Skills grid */}
@@ -57,7 +57,7 @@ export default function Resume({ isDark }) {
               transition={{ duration: 0.6, delay: ci * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className={`p-6 rounded-2xl relative overflow-hidden ${
                 isDark
-                  ? 'bg-dark-card border border-dark-border/60'
+                  ? 'bg-dark-card border border-[#D4AF37]/20 shadow-[0_0_15px_rgba(212,175,55,0.03)]'
                   : 'bg-white border border-gray-200 shadow-sm'
               }`}
             >
@@ -74,7 +74,7 @@ export default function Resume({ isDark }) {
                   {categoryIcons[category]}
                 </div>
                 <h3
-                  className={`font-display font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}
+                  className={`font-display font-bold text-sm ${isDark ? 'text-[#F5EFEB]' : 'text-gray-900'}`}
                 >
                   {category}
                 </h3>
@@ -104,11 +104,11 @@ export default function Resume({ isDark }) {
           transition={{ duration: 0.6, delay: 0.5 }}
           className={`p-6 sm:p-8 rounded-2xl mb-10 ${
             isDark
-              ? 'bg-dark-card border border-dark-border/60'
+              ? 'bg-dark-card border border-[#D4AF37]/20 shadow-[0_0_15px_rgba(212,175,55,0.03)]'
               : 'bg-white border border-gray-200 shadow-sm'
           }`}
         >
-          <h3 className={`font-display font-bold text-sm mb-5 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`font-display font-bold text-sm mb-5 ${isDark ? 'text-[#F5EFEB]' : 'text-gray-900'}`}>
             All Technologies
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -117,9 +117,9 @@ export default function Resume({ isDark }) {
                 <motion.span
                   key={`${cat}-${s.name}`}
                   whileHover={{ scale: 1.08, y: -2 }}
-                  className={`tech-badge cursor-default ${
+                  className={`tech-badge cursor-default transition-all ${
                     isDark
-                      ? 'bg-white/5 border border-white/10 text-gray-300 hover:border-indigo-500/40 hover:text-indigo-300'
+                      ? 'bg-[#D4AF37]/10 border-[#D4AF37]/25 text-[#A39171] hover:border-[#D4AF37]/50 hover:text-[#D4AF37] hover:bg-[#D4AF37]/15'
                       : 'bg-gray-50 border border-gray-200 text-gray-800 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50'
                   }`}
                 >
@@ -140,10 +140,10 @@ export default function Resume({ isDark }) {
           <motion.a
             href="/assets/resume.pdf"
             download="Anuj_Kumar_Resume.pdf"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(99,102,241,0.5)' }}
+            whileHover={{ scale: 1.05, boxShadow: isDark ? '0 0 40px rgba(212,175,55,0.4)' : '0 0 40px rgba(99,102,241,0.5)' }}
             whileTap={{ scale: 0.97 }}
-            className="btn-shimmer group flex items-center gap-3 px-10 py-4 rounded-2xl font-body font-semibold text-white text-base"
-            style={{ background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #3b82f6 100%)' }}
+            className={`btn-shimmer group flex items-center gap-3 px-10 py-4 rounded-2xl font-body font-semibold text-base transition-all ${isDark ? 'text-black' : 'text-white'}`}
+            style={{ background: isDark ? 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)' : 'linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #3b82f6 100%)' }}
           >
             <Download size={20} className="group-hover:animate-bounce" />
             Download Resume
@@ -158,20 +158,20 @@ function SkillBar({ skill, color, isDark, inView, delay }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-1.5">
-        <span className={`text-sm font-body ${isDark ? 'text-gray-300' : 'text-gray-800'}`}>
+        <span className={`text-sm font-body ${isDark ? 'text-[#F5EFEB]' : 'text-gray-800'}`}>
           {skill.name}
         </span>
-        <span className="text-xs font-mono" style={{ color }}>{skill.level}%</span>
+        <span className="text-xs font-mono" style={{ color: isDark ? '#D4AF37' : color }}>{skill.level}%</span>
       </div>
       <div
-        className={`h-1.5 rounded-full overflow-hidden ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}
+        className={`h-1.5 rounded-full overflow-hidden ${isDark ? 'bg-[#D4AF37]/10' : 'bg-gray-100'}`}
       >
         <motion.div
           initial={{ width: 0 }}
           animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
           transition={{ duration: 1, delay, ease: [0.16, 1, 0.3, 1] }}
           className="h-full rounded-full"
-          style={{ background: `linear-gradient(90deg, ${color}, ${color}bb)` }}
+          style={{ background: isDark ? 'linear-gradient(90deg, #D4AF37, #FFDF73)' : `linear-gradient(90deg, ${color}, ${color}bb)` }}
         />
       </div>
     </div>

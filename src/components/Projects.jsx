@@ -34,9 +34,9 @@ export default function Projects({ isDark, onViewAll }) {
     <section
       id="projects"
       ref={ref}
-      className={`section-padding relative ${isDark ? 'bg-dark-surface' : 'bg-gray-50'}`}
+      className={`section-padding relative ${isDark ? 'bg-dark-surface' : 'bg-light-surface'}`}
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
+      <div className={`absolute top-0 left-0 right-0 h-px ${isDark ? 'bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent'}`} />
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
@@ -50,12 +50,12 @@ export default function Projects({ isDark, onViewAll }) {
 
           </p>
           <h2
-            className={`font-display font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
+            className={`font-display font-bold mb-4 ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}
             style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
           >
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" />
+          <div className={`w-16 h-1 mx-auto rounded-full ${isDark ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8860B]' : 'bg-gradient-to-r from-indigo-500 to-purple-500'}`} />
         </motion.div>
 
         <div className="flex flex-col gap-12 sm:gap-16 relative w-full mb-14">
@@ -73,10 +73,10 @@ export default function Projects({ isDark, onViewAll }) {
         >
           <motion.button
             onClick={onViewAll}
-            whileHover={{ scale: 1.05, boxShadow: '0 0 36px rgba(99,102,241,0.4)' }}
+            whileHover={{ scale: 1.05, boxShadow: isDark ? '0 0 36px rgba(212,175,55,0.4)' : '0 0 36px rgba(99,102,241,0.4)' }}
             whileTap={{ scale: 0.97 }}
             className="group relative flex items-center gap-3 px-8 py-4 rounded-2xl font-body font-semibold text-base overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)' }}
+            style={{ background: isDark ? 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)' : 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)' }}
           >
             {/* Shimmer */}
             <span
@@ -88,10 +88,10 @@ export default function Projects({ isDark, onViewAll }) {
                 animation: 'shimmer 2.4s infinite',
               }}
             />
-            <span className="relative z-10 flex items-center gap-3 text-white">
+            <span className={`relative z-10 flex items-center gap-3 ${isDark ? 'text-black' : 'text-white'}`}>
               View All Projects
               <span
-                className={`flex items-center justify-center w-7 h-7 rounded-xl bg-white/20 transition-transform duration-300 group-hover:translate-x-1`}
+                className={`flex items-center justify-center w-7 h-7 rounded-xl ${isDark ? 'bg-black/20' : 'bg-white/20'} transition-transform duration-300 group-hover:translate-x-1`}
               >
                 <ArrowRight size={14} />
               </span>
@@ -100,13 +100,15 @@ export default function Projects({ isDark, onViewAll }) {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+      <div className={`absolute bottom-0 left-0 right-0 h-px ${isDark ? 'bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent' : 'bg-gradient-to-r from-transparent via-purple-500/30 to-transparent'}`} />
     </section>
   )
 }
 
 /* ── Premium Project Card ──────────────────────────────────────── */
 export function ProjectCard({ project, index, isDark, inView }) {
+  const themeColor = isDark ? '#D4AF37' : project.color;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -116,9 +118,9 @@ export function ProjectCard({ project, index, isDark, inView }) {
       style={{
         marginTop: index > 0 ? 'inline-block' : '0', // Spacer
         background: isDark
-          ? 'linear-gradient(145deg, #13111f 0%, #1a1730 100%)'
-          : 'linear-gradient(145deg, #ffffff 0%, #f5f3ff 100%)',
-        border: `1px solid ${isDark ? 'rgba(99,102,241,0.15)' : 'rgba(99,102,241,0.12)'}`,
+          ? 'linear-gradient(145deg, #0A0A0A 0%, #141414 100%)'
+          : 'linear-gradient(145deg, #FFFFFF 0%, #F4F0E6 100%)',
+        border: `1px solid ${isDark ? 'rgba(212,175,55,0.15)' : 'rgba(99,102,241,0.12)'}`,
         boxShadow: isDark
           ? '0 10px 40px rgba(0,0,0,0.5)'
           : '0 10px 40px rgba(99,102,241,0.08)',
@@ -127,7 +129,7 @@ export function ProjectCard({ project, index, isDark, inView }) {
       {/* Hover border glow */}
       <motion.div
         className="absolute inset-0 rounded-[2rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"
-        style={{ boxShadow: `inset 0 0 0 1.5px ${project.color}60, 0 0 50px ${project.color}18` }}
+        style={{ boxShadow: `inset 0 0 0 1.5px ${themeColor}60, 0 0 50px ${themeColor}18` }}
       />
 
       {/* Left side: Body */}
@@ -135,17 +137,17 @@ export function ProjectCard({ project, index, isDark, inView }) {
         {/* Title row */}
         <div>
           <h3
-            className={`font-display font-bold text-3xl mb-2 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}
+            className={`font-display font-bold text-3xl mb-2 leading-tight ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}
           >
             {project.title}
           </h3>
-          <p className="text-sm font-mono font-medium" style={{ color: project.color }}>
+          <p className="text-sm font-mono font-medium" style={{ color: themeColor }}>
             {project.subtitle}
           </p>
         </div>
 
         {/* Description */}
-        <p className={`text-base leading-relaxed flex-1 ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
+        <p className={`text-base leading-relaxed flex-1 ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`}>
           {project.description}
         </p>
 
@@ -154,10 +156,10 @@ export function ProjectCard({ project, index, isDark, inView }) {
           <div className="flex gap-6 py-2 border-y border-dashed border-gray-500/20">
             {project.stats.map((s) => (
               <div key={s.label}>
-                <p className="text-xl font-display font-bold" style={{ color: project.color }}>
+                <p className="text-xl font-display font-bold" style={{ color: themeColor }}>
                   {s.value}
                 </p>
-                <p className={`text-xs font-mono mt-1 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
+                <p className={`text-xs font-mono mt-1 ${isDark ? 'text-[#A39171]/80' : 'text-light-textSecondary'}`}>
                   {s.label}
                 </p>
               </div>
@@ -194,8 +196,8 @@ export function ProjectCard({ project, index, isDark, inView }) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-body font-semibold transition-all ${isDark
-              ? 'bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white'
-              : 'bg-gray-50 border border-gray-200 text-gray-800 hover:bg-gray-100'
+              ? 'bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] hover:bg-[#D4AF37]/15 hover:text-[#F5EFEB]'
+              : 'bg-light-surface border border-light-border text-light-textPrimary hover:bg-light-border/40'
               }`}
           >
             <Github size={16} />
@@ -205,10 +207,10 @@ export function ProjectCard({ project, index, isDark, inView }) {
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, boxShadow: `0 0 24px ${project.color}50` }}
+            whileHover={{ scale: 1.05, boxShadow: `0 0 24px ${themeColor}50` }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-body font-semibold text-white transition-all shadow-lg"
-            style={{ background: `linear-gradient(135deg, ${project.color}, ${project.color}bb)` }}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-body font-semibold transition-all shadow-lg ${isDark ? 'text-black' : 'text-white'}`}
+            style={{ background: `linear-gradient(135deg, ${themeColor}, ${themeColor}bb)` }}
           >
             <ExternalLink size={16} />
             Live Preview
@@ -230,32 +232,32 @@ export function ProjectCard({ project, index, isDark, inView }) {
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to right, ${isDark ? '#13111f' : '#f5f3ff'} 0%, rgba(0,0,0,0.0) 30%)`,
+            background: `linear-gradient(to right, ${isDark ? '#0A0A0A' : '#f5f3ff'} 0%, rgba(0,0,0,0.0) 30%)`,
           }}
         />
         <div
           className="absolute inset-0 lg:hidden"
           style={{
-            background: `linear-gradient(to top, ${isDark ? '#13111f' : '#f5f3ff'} 0%, rgba(0,0,0,0.0) 40%)`,
+            background: `linear-gradient(to top, ${isDark ? '#0A0A0A' : '#f5f3ff'} 0%, rgba(0,0,0,0.0) 40%)`,
           }}
         />
         {/* Color wash on hover */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-400"
-          style={{ background: project.color }}
+          style={{ background: themeColor }}
         />
 
         {/* Top right: number + category */}
         <div className="absolute top-5 right-5 flex items-center gap-3">
           <span
-            className="text-xs font-mono px-3 py-1.5 rounded-full text-white/95"
-            style={{ background: `${project.color}bb`, backdropFilter: 'blur(8px)' }}
+            className={`text-xs font-mono px-3 py-1.5 rounded-full ${isDark ? 'text-black' : 'text-white/95'}`}
+            style={{ background: `${themeColor}bb`, backdropFilter: 'blur(8px)' }}
           >
             {project.category}
           </span>
           <span
-            className="text-sm font-mono font-bold w-10 h-10 rounded-2xl flex items-center justify-center text-white"
-            style={{ background: `${project.color}dd` }}
+            className={`text-sm font-mono font-bold w-10 h-10 rounded-2xl flex items-center justify-center ${isDark ? 'text-black' : 'text-white'}`}
+            style={{ background: `${themeColor}dd` }}
           >
             {String(index + 1).padStart(2, '0')}
           </span>

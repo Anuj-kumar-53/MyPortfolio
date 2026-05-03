@@ -51,7 +51,7 @@ export default function App() {
   return (
     <div
       className={`min-h-screen transition-colors duration-500 ${
-        isDark ? "bg-dark-bg" : "bg-gray-100"
+        isDark ? "bg-dark-bg text-dark-textPrimary" : "bg-light-bg text-light-textPrimary"
       }`}
     >
       <Cursor />

@@ -66,15 +66,15 @@ export default function Contact({ isDark }) {
     <section
       id="contact"
       ref={ref}
-      className={`section-padding relative ${isDark ? 'bg-dark-surface' : 'bg-gray-50'}`}
+      className={`section-padding relative ${isDark ? 'bg-dark-surface' : 'bg-light-surface'}`}
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
+      <div className={`absolute top-0 left-0 right-0 h-px ${isDark ? 'bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent'}`} />
 
       {/* Background blobs */}
       {isDark && (
         <>
-          <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-20 left-0 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#B8860B]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-20 left-0 w-64 h-64 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
         </>
       )}
 
@@ -88,13 +88,13 @@ export default function Contact({ isDark }) {
         >
 
           <h2
-            className={`font-display font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
+            className={`font-display font-bold mb-4 ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}
             style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
           >
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 mb-4" />
-          <p className={`text-sm max-w-md mx-auto ${isDark ? 'text-gray-400' : 'text-gray-700'}`}>
+          <div className={`w-16 h-1 mx-auto rounded-full mb-4 ${isDark ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8860B]' : 'bg-gradient-to-r from-indigo-500 to-purple-500'}`} />
+          <p className={`text-sm max-w-md mx-auto ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`}>
             Have a project in mind or just want to chat? I'd love to hear from you. Send me a message and I'll get back to you as soon as possible.
           </p>
         </motion.div>
@@ -140,18 +140,18 @@ export default function Contact({ isDark }) {
             />
 
             {/* Availability indicator */}
-            <div className={`p-4 rounded-2xl ${isDark ? 'bg-dark-card border border-green-500/20' : 'bg-green-50 border border-green-100'
+            <div className={`p-4 rounded-2xl ${isDark ? 'bg-[#0A0A0A] border border-[#D4AF37]/20' : 'bg-light-surface border border-light-border'
               }`}>
               <div className="flex items-center gap-2 mb-1">
                 <div className="relative">
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                  <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
+                  <div className={`w-2.5 h-2.5 rounded-full ${isDark ? 'bg-[#D4AF37]' : 'bg-green-400'}`} />
+                  <div className={`absolute inset-0 rounded-full animate-ping opacity-75 ${isDark ? 'bg-[#D4AF37]' : 'bg-green-400'}`} />
                 </div>
-                <span className={`text-sm font-semibold ${isDark ? 'text-green-400' : 'text-green-700'}`}>
+                <span className={`text-sm font-semibold ${isDark ? 'text-[#D4AF37]' : 'text-green-700'}`}>
                   Available for opportunities
                 </span>
               </div>
-              <p className={`text-xs pl-4 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
+              <p className={`text-xs pl-4 ${isDark ? 'text-[#A39171]/80' : 'text-light-textSecondary'}`}>
                 Open to internships, freelance, and full-time roles.
               </p>
             </div>
@@ -168,8 +168,8 @@ export default function Contact({ isDark }) {
               ref={formRef}
               onSubmit={handleSubmit}
               className={`p-5 sm:p-8 rounded-2xl ${isDark
-                  ? 'bg-dark-card border border-dark-border/60'
-                  : 'bg-white border border-gray-200 shadow-sm'
+                  ? 'bg-dark-card border border-[#D4AF37]/20 shadow-[0_0_30px_rgba(212,175,55,0.03)]'
+                  : 'bg-light-card border border-light-border shadow-sm'
                 }`}
             >
               <div className="space-y-5">
@@ -199,7 +199,7 @@ export default function Contact({ isDark }) {
 
                 {/* Message */}
                 <div>
-                  <label className={`block text-xs font-mono uppercase tracking-wider mb-2 ${isDark ? 'text-gray-400' : 'text-gray-600'
+                  <label className={`block text-xs font-mono uppercase tracking-wider mb-2 ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'
                     }`}>
                     Message
                   </label>
@@ -209,9 +209,9 @@ export default function Contact({ isDark }) {
                     placeholder="Tell me about your project or just say hi..."
                     value={form.message}
                     onChange={handleChange}
-                    className={`form-input w-full px-4 py-3 rounded-xl text-sm font-body resize-none transition-all ${isDark
-                        ? 'bg-dark-bg border border-dark-border text-white placeholder-gray-600'
-                        : 'bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400'
+                    className={`form-input w-full px-4 py-3 rounded-xl text-sm font-body resize-none transition-all outline-none ${isDark
+                        ? 'bg-[#0A0A0A] border border-[#D4AF37]/20 text-[#F5EFEB] placeholder-[#A39171]/60 focus:border-[#D4AF37]/50 focus:shadow-[0_0_15px_rgba(212,175,55,0.1)]'
+                        : 'bg-light-surface border border-light-border text-light-textPrimary placeholder-light-textSecondary focus:border-light-accent'
                       } ${errors.message ? 'border-red-500' : ''}`}
                   />
                   {errors.message && (
@@ -225,17 +225,17 @@ export default function Contact({ isDark }) {
                 <motion.button
                   type="submit"
                   disabled={status === 'loading'}
-                  whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(99,102,241,0.4)' }}
+                  whileHover={{ scale: 1.02, boxShadow: isDark ? '0 0 30px rgba(212,175,55,0.4)' : '0 0 30px rgba(99,102,241,0.4)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="btn-shimmer w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-body font-semibold text-sm text-white transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-                  style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)' }}
+                  className={`btn-shimmer w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-body font-semibold text-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed ${isDark ? 'text-black' : 'text-white'}`}
+                  style={{ background: isDark ? 'linear-gradient(135deg, #D4AF37, #B8860B)' : 'linear-gradient(135deg, #6366f1, #a855f7)' }}
                 >
                   {status === 'loading' ? (
                     <>
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                        className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
+                        className={`w-4 h-4 border-2 rounded-full ${isDark ? 'border-black/30 border-t-black' : 'border-white/30 border-t-white'}`}
                       />
                       Sending...
                     </>
@@ -282,23 +282,25 @@ export default function Contact({ isDark }) {
 }
 
 function InfoCard({ icon, label, value, href, color, isDark }) {
+  const themeColor = isDark ? '#D4AF37' : color;
+
   const content = (
     <motion.div
       whileHover={{ x: 4 }}
       className={`flex items-center gap-4 p-4 rounded-xl transition-all ${isDark
-          ? 'bg-dark-card border border-dark-border/60 hover:border-indigo-500/30'
-          : 'bg-gray-50 border border-gray-200 hover:border-indigo-300'
+          ? 'bg-dark-card border border-[#D4AF37]/10 hover:border-[#D4AF37]/30 hover:bg-white/[0.02]'
+          : 'bg-light-surface border border-light-border hover:border-light-accent'
         }`}
     >
       <div
         className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-        style={{ background: `${color}20`, color }}
+        style={{ background: `${themeColor}15`, color: themeColor }}
       >
         {icon}
       </div>
       <div>
-        <p className={`text-xs font-mono ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>{label}</p>
-        <p className={`text-sm font-body font-medium ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>{value}</p>
+        <p className={`text-xs font-mono ${isDark ? 'text-[#A39171]/80' : 'text-light-textSecondary'}`}>{label}</p>
+        <p className={`text-sm font-body font-medium ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}>{value}</p>
       </div>
     </motion.div>
   )
@@ -316,7 +318,7 @@ function InfoCard({ icon, label, value, href, color, isDark }) {
 function FormField({ label, name, type, placeholder, value, onChange, error, isDark }) {
   return (
     <div>
-      <label className={`block text-xs font-mono uppercase tracking-wider mb-2 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+      <label className={`block text-xs font-mono uppercase tracking-wider mb-2 ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`}>
         {label}
       </label>
       <input
@@ -325,9 +327,9 @@ function FormField({ label, name, type, placeholder, value, onChange, error, isD
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`form-input w-full px-4 py-3 rounded-xl text-sm font-body transition-all ${isDark
-            ? 'bg-dark-bg border border-dark-border text-white placeholder-gray-600'
-            : 'bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400'
+        className={`form-input w-full px-4 py-3 rounded-xl text-sm font-body transition-all outline-none ${isDark
+            ? 'bg-[#0A0A0A] border border-[#D4AF37]/20 text-[#F5EFEB] placeholder-[#A39171]/60 focus:border-[#D4AF37]/50 focus:shadow-[0_0_15px_rgba(212,175,55,0.1)]'
+            : 'bg-light-surface border border-light-border text-light-textPrimary placeholder-light-textSecondary focus:border-light-accent'
           } ${error ? 'border-red-500' : ''}`}
       />
       {error && (

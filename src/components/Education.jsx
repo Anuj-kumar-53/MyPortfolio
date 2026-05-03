@@ -33,7 +33,7 @@ const education = [
     scoreLabel: 'Score',
     courses: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science'],
     achievements: ['School Topper in Computer Science', 'State-level Science Olympiad participant'],
-    image: 'https://scontent.fdel1-7.fna.fbcdn.net/v/t1.6435-9/149264769_4349777805051686_4634485602205707995_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_ohc=KTbCyQXcZUwQ7kNvwH1xByA&_nc_oc=Adkb_IoOYfiCjLRFGj7z_v7o1VQC9YUTrnu3Xu4j_2MowzcqBDn3ZeQiqAsukVnuLYk&_nc_zt=23&_nc_ht=scontent.fdel1-7.fna&_nc_gid=-z-d9Z_dokgL2xym4wgWKA&_nc_ss=8&oh=00_AfwyN6C_6Wh3q7D8aVWsvF5c45Y6uH1QUpx0Dp0egLye1Q&oe=69DFA5C5',
+    image: 'assets/r12.png',
     imageAlt: 'Higher Secondary School',
     accent: '#a855f7',
   },
@@ -49,7 +49,7 @@ const education = [
     scoreLabel: 'Score',
     courses: ['Mathematics', 'Science', 'English', 'Social Studies', 'Computer'],
     achievements: ['School rank 1 in Mathematics', 'Best Student Award 2021'],
-    image: 'https://mhss.edu.in/wp-content/uploads/2022/09/school-photo.jpg',
+    image: 'assets/m10.png',
     imageAlt: 'School',
     accent: '#3b82f6',
   },
@@ -87,61 +87,65 @@ export default function Education({ isDark }) {
 
   if (isMobile) {
     return (
-      <section id="education" className={`section-padding ${isDark ? 'bg-dark-bg' : 'bg-gray-100'}`}>
+      <section id="education" className={`section-padding ${isDark ? 'bg-dark-bg' : 'bg-light-surface'}`}>
         <div className="max-w-4xl mx-auto px-6">
           <div className="mb-12 text-center">
-            <h2 className={`font-display font-bold text-3xl mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`font-display font-bold text-3xl mb-4 ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}>
               Education <span className="gradient-text">Timeline</span>
             </h2>
-            <div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" />
+            <div className={`w-16 h-1 mx-auto rounded-full ${isDark ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8860B]' : 'bg-gradient-to-r from-indigo-500 to-purple-500'}`} />
           </div>
           <div className="space-y-6">
-            {education.map((edu) => (
-              <motion.div
-                key={edu.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className={`p-6 rounded-3xl border ${isDark ? 'bg-white/[0.04] border-white/10' : 'bg-white border-gray-100 shadow-sm'}`}
-              >
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className={`text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full ${edu.status === 'Ongoing' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'}`}>
-                      {edu.status}
-                    </span>
-                    <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10" style={{ color: edu.accent, borderColor: `${edu.accent}33` }}>
-                      {edu.score} {edu.scoreLabel}
-                    </span>
-                  </div>
-                  <h3 className={`font-display font-bold text-xl leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{edu.degree}</h3>
-                  <p className="font-semibold text-sm" style={{ color: edu.accent }}>{edu.field}</p>
-                  
-                  <div className="flex flex-col gap-3 my-2">
-                    {[
-                      { icon: <GraduationCap size={15} />, text: edu.institution },
-                      { icon: <MapPin size={15} />, text: edu.location },
-                      { icon: <Calendar size={15} />, text: edu.duration },
-                    ].map(({ icon, text }, i) => (
-                      <div key={i} className={`flex items-start gap-3 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                         <span style={{ color: edu.accent }} className="mt-0.5">{icon}</span>
-                         {text}
-                      </div>
-                    ))}
-                  </div>
+            {education.map((e) => {
+              const themeAccent = isDark ? '#D4AF37' : e.accent;
+              return (
+                <motion.div
+                  key={e.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className={`p-6 rounded-3xl border ${isDark ? 'bg-white/[0.02] border-[#D4AF37]/20' : 'bg-light-card border-light-border shadow-sm'}`}
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-3">
+                      <span className={`text-[10px] font-mono uppercase tracking-wider px-3 py-1 rounded-full ${e.status === 'Ongoing' ? (isDark ? 'bg-[#B8860B]/10 text-[#B8860B] border border-[#B8860B]/20' : 'bg-green-500/10 text-green-400 border border-green-500/20') : (isDark ? 'bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20' : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20')}`}>
+                        {e.status}
+                      </span>
+                      <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10" style={{ color: themeAccent, borderColor: `${themeAccent}33` }}>
+                        {e.score} {e.scoreLabel}
+                      </span>
+                    </div>
+                    <h3 className={`font-display font-bold text-xl leading-tight ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}>{e.degree}</h3>
+                    <p className="font-semibold text-sm" style={{ color: themeAccent }}>{e.field}</p>
 
-                  <div className="pt-4 border-t border-dashed border-white/10">
-                    <p className={`text-[10px] font-mono uppercase tracking-widest mb-3 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Key Courses</p>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.courses.slice(0, 6).map(c => (
-                        <span key={c} className="px-2.5 py-1 rounded-lg text-[10px] font-medium" style={{ background: `${edu.accent}15`, color: edu.accent, border: `1px solid ${edu.accent}30` }}>
-                          {c}
-                        </span>
+                    <div className="flex flex-col gap-3 my-2">
+                      {[
+                        { icon: <GraduationCap size={15} />, text: e.institution },
+                        { icon: <MapPin size={15} />, text: e.location },
+                        { icon: <Calendar size={15} />, text: e.duration },
+                      ].map(({ icon, text }, i) => (
+                        <div key={i} className={`flex items-start gap-3 text-sm ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`}>
+                          <span style={{ color: themeAccent }} className="mt-0.5">{icon}</span>
+                          {text}
+                        </div>
                       ))}
                     </div>
+
+                    <div className="pt-4 border-t border-dashed border-white/10">
+                      <p className={`text-[10px] font-mono uppercase tracking-widest mb-3 ${isDark ? 'text-[#A39171]/80' : 'text-light-textSecondary'}`}>Key Courses</p>
+                      <div className="flex flex-wrap gap-2">
+                        {e.courses.slice(0, 6).map(c => (
+                          <span key={c} className="px-2.5 py-1 rounded-lg text-[10px] font-medium" style={{ background: `${themeAccent}15`, color: themeAccent, border: `1px solid ${themeAccent}30` }}>
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              )
+            }
+            )}
           </div>
         </div>
       </section>
@@ -149,6 +153,7 @@ export default function Education({ isDark }) {
   }
 
   const edu = education[activeIndex]
+  const themeAccent = isDark ? '#D4AF37' : edu.accent;
 
   return (
     <div
@@ -158,12 +163,12 @@ export default function Education({ isDark }) {
       className="relative"
     >
       <div
-        className={`sticky top-0 w-full h-screen overflow-hidden flex flex-col ${isDark ? 'bg-dark-bg' : 'bg-gray-100'
+        className={`sticky top-0 w-full h-screen overflow-hidden flex flex-col ${isDark ? 'bg-dark-bg' : 'bg-light-surface'
           }`}
       >
         <div className="pt-24 pb-6 px-8 text-center flex-shrink-0">
           <h2
-            className={`font-display font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}
+            className={`font-display font-bold ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}
             style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)' }}
           >
             Education <span className="gradient-text">Timeline</span>
@@ -174,7 +179,7 @@ export default function Education({ isDark }) {
                 key={i}
                 animate={{
                   width: i === activeIndex ? 28 : 8,
-                  background: i === activeIndex ? e.accent : isDark ? '#334155' : '#cbd5e1',
+                  background: i === activeIndex ? themeAccent : isDark ? '#2E2718' : '#E8E2D2',
                 }}
                 transition={{ duration: 0.4 }}
                 className="h-2 rounded-full"
@@ -196,10 +201,10 @@ export default function Education({ isDark }) {
                 <div className="flex items-center gap-3 mb-4">
                   <span
                     className={`text-xs font-mono px-3 py-1 rounded-full ${edu.status === 'Ongoing'
-                      ? 'bg-green-500/15 text-green-400 border border-green-500/25'
+                      ? (isDark ? 'bg-[#B8860B]/15 text-[#B8860B] border border-[#B8860B]/25' : 'bg-green-500/15 text-green-400 border border-green-500/25')
                       : isDark
-                        ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/25'
-                        : 'bg-indigo-50 text-indigo-600 border border-indigo-200'
+                        ? 'bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/25'
+                        : 'bg-light-surface text-light-accent border border-light-border'
                       }`}
                   >
                     {edu.status}
@@ -207,21 +212,21 @@ export default function Education({ isDark }) {
                   <span
                     className="text-xs font-mono px-3 py-1 rounded-full"
                     style={{
-                      background: `${edu.accent}22`,
-                      color: edu.accent,
-                      border: `1px solid ${edu.accent}44`,
+                      background: `${themeAccent}22`,
+                      color: themeAccent,
+                      border: `1px solid ${themeAccent}44`,
                     }}
                   >
                     {edu.score} {edu.scoreLabel}
                   </span>
                 </div>
                 <h3
-                  className={`font-display font-bold leading-tight mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}
+                  className={`font-display font-bold leading-tight mb-1 ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}
                   style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)' }}
                 >
                   {edu.degree}
                 </h3>
-                <p className="font-semibold text-base mb-5" style={{ color: edu.accent }}>
+                <p className="font-semibold text-base mb-5" style={{ color: themeAccent }}>
                   {edu.field}
                 </p>
                 <div className="flex flex-wrap gap-5 mb-7">
@@ -232,15 +237,15 @@ export default function Education({ isDark }) {
                   ].map(({ icon, text }) => (
                     <span
                       key={text}
-                      className={`flex items-center gap-1.5 text-sm ${isDark ? 'text-gray-400' : 'text-gray-700'}`}
+                      className={`flex items-center gap-1.5 text-sm ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`}
                     >
-                      <span style={{ color: edu.accent }}>{icon}</span>
+                      <span style={{ color: themeAccent }}>{icon}</span>
                       {text}
                     </span>
                   ))}
                 </div>
                 <div className="mb-6">
-                  <p className={`text-xs font-mono uppercase tracking-widest mb-2.5 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
+                  <p className={`text-xs font-mono uppercase tracking-widest mb-2.5 ${isDark ? 'text-[#A39171]/80' : 'text-light-textSecondary'}`}>
                     Key Courses
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -249,9 +254,9 @@ export default function Education({ isDark }) {
                         key={c}
                         className="tech-badge"
                         style={{
-                          background: `${edu.accent}14`,
-                          border: `1px solid ${edu.accent}30`,
-                          color: edu.accent,
+                          background: `${themeAccent}14`,
+                          border: `1px solid ${themeAccent}30`,
+                          color: themeAccent,
                         }}
                       >
                         {c}
@@ -260,13 +265,13 @@ export default function Education({ isDark }) {
                   </div>
                 </div>
                 <div>
-                  <p className={`text-xs font-mono uppercase tracking-widest mb-2.5 ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
+                  <p className={`text-xs font-mono uppercase tracking-widest mb-2.5 ${isDark ? 'text-[#A39171]/80' : 'text-light-textSecondary'}`}>
                     Achievements
                   </p>
                   <ul className="space-y-1.5">
                     {edu.achievements.map((a) => (
-                      <li key={a} className={`flex items-start gap-2 text-sm ${isDark ? 'text-gray-300' : 'text-gray-800'}`}>
-                        <Award size={14} className="mt-0.5 flex-shrink-0" style={{ color: edu.accent }} />
+                      <li key={a} className={`flex items-start gap-2 text-sm ${isDark ? 'text-[#F5EFEB]/90' : 'text-light-textPrimary'}`}>
+                        <Award size={14} className="mt-0.5 flex-shrink-0" style={{ color: themeAccent }} />
                         {a}
                       </li>
                     ))}
@@ -287,12 +292,12 @@ export default function Education({ isDark }) {
               >
                 <div
                   className="absolute inset-0 rounded-3xl blur-2xl opacity-30"
-                  style={{ background: `radial-gradient(ellipse, ${edu.accent} 0%, transparent 70%)` }}
+                  style={{ background: `radial-gradient(ellipse, ${themeAccent} 0%, transparent 70%)` }}
                 />
                 <div
                   className="relative rounded-3xl overflow-hidden"
                   style={{
-                    boxShadow: `0 0 0 1px ${edu.accent}40, 0 24px 60px rgba(0,0,0,0.35)`,
+                    boxShadow: `0 0 0 1px ${themeAccent}40, 0 24px 60px rgba(0,0,0,0.35)`,
                   }}
                 >
                   <img
@@ -317,7 +322,7 @@ export default function Education({ isDark }) {
                   transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
                   className="absolute -top-3 -right-3 w-14 h-14 rounded-full"
                   style={{
-                    background: `conic-gradient(from 0deg, ${edu.accent}, transparent, ${edu.accent})`,
+                    background: `conic-gradient(from 0deg, ${themeAccent}, transparent, ${themeAccent})`,
                     filter: 'blur(6px)',
                     opacity: 0.6,
                   }}
@@ -328,14 +333,14 @@ export default function Education({ isDark }) {
         </div>
 
         <div className="flex-shrink-0 pb-6 flex flex-col items-center gap-1">
-          <p className={`text-xs font-mono ${isDark ? 'text-gray-600' : 'text-gray-500'}`}>
+          <p className={`text-xs font-mono ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`}>
             {activeIndex < education.length - 1 ? 'scroll for next' : 'scroll to continue'}
           </p>
           <motion.div
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.2, repeat: Infinity }}
             className="w-px h-6"
-            style={{ background: `linear-gradient(to bottom, ${edu.accent}80, transparent)` }}
+            style={{ background: `linear-gradient(to bottom, ${themeAccent}80, transparent)` }}
           />
         </div>
       </div>

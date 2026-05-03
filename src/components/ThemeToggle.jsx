@@ -11,9 +11,9 @@ export default function ThemeToggle({ isDark, toggle }) {
           ? 'linear-gradient(135deg, #1e293b, #334155)'
           : 'linear-gradient(135deg, #bfdbfe, #ddd6fe)',
         border: isDark
-          ? '1px solid rgba(99,102,241,0.4)'
+          ? '1px solid rgba(212,175,55,0.4)'
           : '1px solid rgba(139,92,246,0.3)',
-        boxShadow: isDark ? '0 0 12px rgba(99,102,241,0.3)' : 'none',
+        boxShadow: isDark ? '0 0 12px rgba(212,175,55,0.3)' : 'none',
       }}
       whileTap={{ scale: 0.95 }}
       aria-label="Toggle theme"
@@ -23,7 +23,7 @@ export default function ThemeToggle({ isDark, toggle }) {
         animate={{
           x: isDark ? 28 : 0,
           background: isDark
-            ? 'linear-gradient(135deg, #6366f1, #a855f7)'
+            ? 'linear-gradient(135deg, #D4AF37, #B8860B)'
             : 'linear-gradient(135deg, #f59e0b, #f97316)',
         }}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -37,7 +37,7 @@ export default function ThemeToggle({ isDark, toggle }) {
               exit={{ rotate: 30, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Moon size={12} className="text-white" />
+              <Moon size={12} className="text-black" />
             </motion.div>
           ) : (
             <motion.div

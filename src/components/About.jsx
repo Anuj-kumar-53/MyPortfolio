@@ -299,38 +299,38 @@ export default function About({ isDark }) {
   const [activeSkill, setActiveSkill] = useState(0)
 
   const glass = isDark
-    ? 'bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm hover:border-white/[0.14] transition-colors duration-300'
-    : 'bg-white/80 border border-gray-200/80 shadow-sm hover:shadow-md backdrop-blur-sm transition-all duration-300'
+    ? 'bg-white/[0.02] border border-[#D4AF37]/20 backdrop-blur-sm hover:border-[#D4AF37]/40 transition-colors duration-300'
+    : 'bg-light-card border border-light-border shadow-sm hover:shadow-md backdrop-blur-sm transition-all duration-300'
 
   return (
     <section id="about" ref={ref}
-      className={`section-padding relative overflow-hidden ${isDark ? 'bg-dark-bg' : 'bg-gradient-to-br from-gray-100 to-gray-200/50'}`}>
+      className={`section-padding relative overflow-hidden ${isDark ? 'bg-dark-bg' : 'bg-gradient-to-br from-light-bg to-light-surface'}`}>
 
       {/* Background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className={`blob absolute w-96 h-96 rounded-full blur-3xl opacity-20 -top-20 -left-20 ${isDark ? 'bg-indigo-600' : 'bg-indigo-300'}`} />
-        <div className={`blob blob-delay-1 absolute w-80 h-80 rounded-full blur-3xl opacity-15 top-1/3 right-0 ${isDark ? 'bg-purple-600' : 'bg-purple-300'}`} />
-        <div className={`blob blob-delay-2 absolute w-72 h-72 rounded-full blur-3xl opacity-10 bottom-10 left-1/3 ${isDark ? 'bg-blue-600' : 'bg-blue-300'}`} />
-        {isDark && <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(rgba(99,102,241,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.5) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />}
+        <div className={`blob absolute w-96 h-96 rounded-full blur-3xl opacity-20 -top-20 -left-20 ${isDark ? 'bg-[#D4AF37]' : 'bg-indigo-300'}`} />
+        <div className={`blob blob-delay-1 absolute w-80 h-80 rounded-full blur-3xl opacity-15 top-1/3 right-0 ${isDark ? 'bg-[#B8860B]' : 'bg-purple-300'}`} />
+        <div className={`blob blob-delay-2 absolute w-72 h-72 rounded-full blur-3xl opacity-10 bottom-10 left-1/3 ${isDark ? 'bg-[#8C6200]' : 'bg-blue-300'}`} />
+        {isDark && <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />}
       </div>
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+      <div className={`absolute top-0 left-0 right-0 h-px ${isDark ? 'bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent'}`} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div variants={container} initial="hidden" animate={inView ? 'visible' : 'hidden'}>
 
           {/* Header */}
           <motion.div variants={fadeUp} className="mb-16 text-center">
-            <motion.p className={`font-mono text-sm mb-3 tracking-widest uppercase ${isDark ? 'text-indigo-400' : 'text-indigo-500'}`}
+            <motion.p className={`font-mono text-sm mb-3 tracking-widest uppercase ${isDark ? 'text-[#A39171]' : 'text-indigo-500'}`}
               initial={{ opacity: 0, letterSpacing: '0.4em' }}
               animate={inView ? { opacity: 1, letterSpacing: '0.15em' } : {}}
               transition={{ duration: 0.8 }}>
 
             </motion.p>
-            <h2 className={`font-display font-black mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
+            <h2 className={`font-display font-black mb-4 ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}
               style={{ fontSize: 'clamp(1.8rem, 8vw, 3.2rem)', letterSpacing: '-0.02em' }}>
               About <span className="gradient-text">Me</span>
             </h2>
-            <motion.div className="w-16 h-1 mx-auto rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+            <motion.div className={`w-16 h-1 mx-auto rounded-full ${isDark ? 'bg-gradient-to-r from-[#D4AF37] to-[#B8860B]' : 'bg-gradient-to-r from-indigo-500 to-purple-500'}`}
               initial={{ scaleX: 0 }} animate={inView ? { scaleX: 1 } : {}} transition={{ duration: 0.8, delay: 0.3 }} />
           </motion.div>
 
@@ -341,35 +341,35 @@ export default function About({ isDark }) {
             <motion.div variants={fadeRight} className="md:col-span-2 lg:col-span-3">
               <TiltCard className={`relative p-8 rounded-3xl overflow-hidden h-full ${glass}`}>
                 {isDark && <>
-                  <div className="absolute -top-12 -right-12 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
-                  <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#D4AF37]/10 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#B8860B]/10 rounded-full blur-2xl pointer-events-none" />
                 </>}
 
                 <div className="flex items-center gap-3 mb-6">
-                  <motion.div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center"
+                  <motion.div className={`w-10 h-10 rounded-xl ${isDark ? 'bg-[#D4AF37]/15 border border-[#D4AF37]/25' : 'bg-indigo-500/20 border border-indigo-500/30'} flex items-center justify-center`}
                     animate={{ rotate: [0, 6, -6, 0] }} transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}>
-                    <Users size={18} className="text-indigo-400" />
+                    <Users size={18} className={isDark ? "text-[#D4AF37]" : "text-indigo-400"} />
                   </motion.div>
-                  <div className="flex-1 h-px bg-gradient-to-r from-indigo-500/40 to-transparent" />
-                  <span className={`font-mono text-xs tracking-widest uppercase ${isDark ? 'text-indigo-400/70' : 'text-indigo-500/80'}`}>who i am</span>
+                  <div className={`flex-1 h-px ${isDark ? 'bg-gradient-to-r from-[#D4AF37]/40 to-transparent' : 'bg-gradient-to-r from-indigo-500/40 to-transparent'}`} />
+                  <span className={`font-mono text-xs tracking-widest uppercase ${isDark ? 'text-[#D4AF37]/70' : 'text-indigo-500/80'}`}>who i am</span>
                 </div>
 
-                <p className={`text-base leading-relaxed mb-4 ${isDark ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
-                  I'm <span className="font-bold text-indigo-400">Anuj Kumar</span> — a full-stack developer and{' '}
-                  <span className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Computer Science student at LPU</span>{' '}
+                <p className={`text-base leading-relaxed mb-4 ${isDark ? 'text-[#A39171]' : 'text-light-textPrimary'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
+                  I'm <span className={`font-bold ${isDark ? 'text-[#D4AF37]' : 'text-indigo-400'}`}>Anuj Kumar</span> — a full-stack developer and{' '}
+                  <span className={`font-bold ${isDark ? 'text-[#F5EFEB]' : 'text-light-textPrimary'}`}>Computer Science student at LPU</span>{' '}
                   with a strong CGPA of <span className="gradient-text font-bold">8.11</span>. I don't just write code —
                   I architect solutions. From building scalable backends with Node.js to crafting pixel-perfect
                   React UIs, I love owning the entire product, end to end.
                 </p>
 
-                <p className={`text-base leading-relaxed mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
-                  My real obsession? <span className="font-semibold text-purple-400">Data Structures & Algorithms</span>.
-                  I've solved <span className="font-semibold text-white">500+</span> problems across LeetCode, GFG and Coding Ninjas,
+                <p className={`text-base leading-relaxed mb-4 ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
+                  My real obsession? <span className={`font-semibold ${isDark ? 'text-[#D4AF37]' : 'text-purple-400'}`}>Data Structures & Algorithms</span>.
+                  I've solved <span className={`font-semibold ${isDark ? 'text-[#F5EFEB]' : 'text-white'}`}>500+</span> problems across LeetCode, GFG and Coding Ninjas,
                   sharpening my analytical thinking every single day — because strong fundamentals are what separate good engineers from great ones.
                 </p>
 
-                <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-gray-400' : 'text-gray-600'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
-                  I'm deeply <span className="font-semibold text-cyan-400">ambitious</span>: I've competed in national hackathons
+                <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-[#A39171]' : 'text-light-textSecondary'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
+                  I'm deeply <span className={`font-semibold ${isDark ? 'text-[#B8860B]' : 'text-cyan-400'}`}>ambitious</span>: I've competed in national hackathons
                   (Top 10 at Trinetra, ranked 461/10K+ at CodeClash), shipped{' '}
                   <span className="font-semibold">production-ready apps</span>, and I'm actively exploring
                   cloud & AI to build the next generation of smart, scalable systems.
@@ -382,8 +382,8 @@ export default function About({ isDark }) {
                       transition={{ delay: 0.5 + i * 0.08, type: 'spring', stiffness: 260 }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold cursor-default ${isDark
-                        ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 hover:border-indigo-400/50'
-                        : 'bg-indigo-50 border border-indigo-200 text-indigo-600 hover:bg-indigo-100'
+                        ? 'bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] hover:border-[#D4AF37]/50'
+                        : 'bg-light-surface border border-light-border text-light-accent hover:bg-light-border/40'
                         }`}
                       style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: '11px' }}>
                       {s}
@@ -393,64 +393,84 @@ export default function About({ isDark }) {
               </TiltCard>
             </motion.div>
 
-            {/* dp*/}
-            <div className="md:col-span-2 lg:col-span-2 rounded-3xl bg-linear-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-xl p-6 overflow-hidden flex flex-col gap-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] relative self-stretch">
-                    <h3 className="text-xl gradient-text font-semibold leading-tight">
-                    Always exploring new technologies
-                    </h3>
+           {/* dp - Profile & Skills Marquee */}
+<div className={`md:col-span-2 lg:col-span-2 rounded-3xl p-6 overflow-hidden flex flex-col gap-6 relative self-stretch ${
+  isDark 
+    ? 'bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
+    : 'bg-light-card border border-light-border shadow-md'
+}`}>
+  <h3 className={`text-xl font-semibold leading-tight ${isDark ? 'gradient-text' : 'text-light-textPrimary'}`}>
+    Always Busy Expoloring
+  </h3>
 
-                    <div className="space-y-4 flex-1 flex flex-col justify-start min-h-0">
+  <div className="space-y-4 flex-1 flex flex-col justify-start min-h-0">
+    {/* Row 1 */}
+    <div className="overflow-hidden">
+      <div className="flex w-max gap-3 animate-marquee-left">
+        {[...row1, ...row1].map((tech, i) => (
+          <span
+            key={`r1-${i}`}
+            className={`px-3 py-1.5 rounded-full border text-xs font-mono whitespace-nowrap ${
+              isDark
+                ? 'border-white/20 bg-white/5 text-white/70'
+                : 'border-gray-300 bg-gray-100 text-gray-700'
+            }`}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
 
-                        <div className="overflow-hidden">
-                            <div className="flex w-max gap-3 animate-marquee-left">
-                                {[...row1, ...row1].map((tech, i) => (
-                                    <span
-                                        key={`r1-${i}`}
-                                        className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono text-white/70 whitespace-nowrap"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
+    {/* Row 2 */}
+    <div className="overflow-hidden">
+      <div className="flex w-max gap-3 animate-marquee-right">
+        {[...row2, ...row2].map((tech, i) => (
+          <span
+            key={`r2-${i}`}
+            className={`px-3 py-1.5 rounded-full border text-xs font-mono whitespace-nowrap ${
+              isDark
+                ? 'border-white/20 bg-white/5 text-white/70'
+                : 'border-gray-300 bg-gray-100 text-gray-700'
+            }`}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
 
-                        <div className="overflow-hidden">
-                            <div className="flex w-max gap-3 animate-marquee-right">
-                                {[...row2, ...row2].map((tech, i) => (
-                                    <span
-                                        key={`r2-${i}`}
-                                        className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono text-white/70 whitespace-nowrap"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
+    {/* Row 3 */}
+    <div className="overflow-hidden">
+      <div className="flex w-max gap-3 animate-marquee-left-slow">
+        {[...row3, ...row3].map((tech, i) => (
+          <span
+            key={`r3-${i}`}
+            className={`px-3 py-1.5 rounded-full border text-xs font-mono whitespace-nowrap ${
+              isDark
+                ? 'border-white/20 bg-white/5 text-white/70'
+                : 'border-gray-300 bg-gray-100 text-gray-700'
+            }`}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
 
-                        <div className="overflow-hidden">
-                            <div className="flex w-max gap-3 animate-marquee-left-slow">
-                                {[...row3, ...row3].map((tech, i) => (
-                                    <span
-                                        key={`r3-${i}`}
-                                        className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono text-white/70 whitespace-nowrap"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="flex-1 flex items-center justify-center min-h-0 mt-4 md:mt-6 pb-4 md:pb-0">
-                            <img
-                                src="/assets/anuj2.jpg"
-                                alt="Profile"
-                                className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border border-white/20 shadow-lg shrink-0 object-cover"
-                                priority
-                            />
-                        </div>
-
-                    </div>
-                </div>
+    {/* Profile Image */}
+    <div className="flex-1 flex items-center justify-center min-h-0 mt-4 md:mt-6 pb-4 md:pb-0">
+      <img
+        src="/assets/anuj2.jpeg"
+        alt="Profile"
+        className={`w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full shadow-lg shrink-0 object-cover ${
+          isDark ? 'border border-white/20' : 'border border-light-border'
+        }`}
+        priority
+      />
+    </div>
+  </div>
+</div>
 
           
           </div>
@@ -459,12 +479,12 @@ export default function About({ isDark }) {
           <motion.div variants={fadeUp} className={`relative rounded-3xl overflow-hidden mb-5 ${glass}`}>
             <div className="p-8">
               <div className="flex items-center gap-3 mb-6">
-                <motion.div className="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center"
+                <motion.div className={`w-10 h-10 rounded-xl ${isDark ? 'bg-[#B8860B]/20 border border-[#B8860B]/30' : 'bg-purple-500/20 border border-purple-500/30'} flex items-center justify-center`}
                   animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}>
-                  <Code2 size={18} className="text-purple-400" />
+                  <Code2 size={18} className={isDark ? "text-[#B8860B]" : "text-purple-400"} />
                 </motion.div>
-                <div className="flex-1 h-px bg-gradient-to-r from-purple-500/40 to-transparent" />
-                <span className={`font-mono text-xs tracking-widest uppercase ${isDark ? 'text-purple-400/70' : 'text-purple-500/80'}`}>tech stack</span>
+                <div className={`flex-1 h-px ${isDark ? 'bg-gradient-to-r from-[#B8860B]/40 to-transparent' : 'bg-gradient-to-r from-purple-500/40 to-transparent'}`} />
+                <span className={`font-mono text-xs tracking-widest uppercase ${isDark ? 'text-[#B8860B]/70' : 'text-purple-500/80'}`}>tech stack</span>
               </div>
 
               {/* Category tabs */}
@@ -475,7 +495,7 @@ export default function About({ isDark }) {
                     className="px-4 py-1.5 rounded-full text-xs font-mono font-semibold transition-all border"
                     style={activeSkill === i
                       ? { background: `linear-gradient(135deg, ${s.color}, ${skills[(i + 1) % skills.length].color})`, color: '#fff', border: 'none' }
-                      : { background: 'transparent', color: isDark ? '#9ca3af' : '#6b7280', border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e5e7eb' }}>
+                      : { background: 'transparent', color: isDark ? '#9ca3af' : '#6B655F', border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E8E2D2' }}>
                     <span className="flex items-center gap-1.5">{s.icon} {s.category}</span>
                   </motion.button>
                 ))}
@@ -492,8 +512,8 @@ export default function About({ isDark }) {
                     transition={{ delay: i * 0.07, type: 'spring', stiffness: 260, damping: 20 }}
                     whileHover={{ scale: 1.1, y: -4 }}
                     className={`inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-mono font-medium border cursor-default transition-all ${isDark
-                      ? 'bg-white/[0.05] border-white/[0.10] text-gray-200 hover:border-indigo-500/40 hover:bg-white/[0.10]'
-                      : 'bg-white border-gray-200 text-gray-700 hover:border-indigo-300 hover:shadow-sm'
+                      ? 'bg-white/[0.05] border-white/[0.10] text-[#A39171] hover:border-[#D4AF37]/40 hover:bg-white/[0.10] hover:text-[#D4AF37]'
+                      : 'bg-light-card border-light-border text-light-textPrimary hover:border-light-accent hover:shadow-sm'
                       }`}>
                     {/* Tech icon instead of dot */}
                     <span className="flex-shrink-0 rounded-md overflow-hidden" style={{ lineHeight: 0 }}>
@@ -510,12 +530,12 @@ export default function About({ isDark }) {
           <motion.div variants={fadeUp} className={`relative rounded-3xl overflow-hidden ${glass}`}>
             <div className="p-8">
               <div className="flex items-center gap-3 mb-6">
-                <motion.div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center"
+                <motion.div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#D4AF37]/20 border border-[#D4AF37]/30' : 'bg-cyan-500/20 border border-cyan-500/30'}`}
                   animate={{ rotate: [0, 15, -15, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}>
-                  <Star size={18} className="text-cyan-400" />
+                  <Star size={18} className={isDark ? "text-[#D4AF37]" : "text-cyan-400"} />
                 </motion.div>
-                <div className="flex-1 h-px bg-gradient-to-r from-cyan-500/40 to-transparent" />
-                <span className={`font-mono text-xs tracking-widest uppercase ${isDark ? 'text-cyan-400/70' : 'text-cyan-500/80'}`}>highlights</span>
+                <div className={`flex-1 h-px ${isDark ? 'bg-gradient-to-r from-[#D4AF37]/40 to-transparent' : 'bg-gradient-to-r from-cyan-500/40 to-transparent'}`} />
+                <span className={`font-mono text-xs tracking-widest uppercase ${isDark ? 'text-[#D4AF37]/70' : 'text-cyan-500/80'}`}>highlights</span>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-4">
@@ -525,14 +545,14 @@ export default function About({ isDark }) {
                     transition={{ delay: 0.3 + i * 0.12, duration: 0.5 }}
                     whileHover={{ scale: 1.03, y: -4 }}
                     className={`flex items-start gap-3 p-4 rounded-2xl border transition-all cursor-default ${isDark
-                      ? 'bg-white/[0.03] border-white/[0.06] hover:border-cyan-500/30 hover:bg-white/[0.07]'
-                      : 'bg-gray-50/80 border-gray-200 hover:border-cyan-300 hover:bg-white'
+                      ? 'bg-white/[0.03] border-[#D4AF37]/10 hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5'
+                      : 'bg-light-surface border-light-border hover:border-light-accent hover:bg-light-card'
                       }`}>
                     <motion.span className="text-2xl flex-shrink-0 mt-0.5"
                       whileHover={{ rotate: [0, -15, 15, 0] }} transition={{ duration: 0.4 }}>
                       {icon}
                     </motion.span>
-                    <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
+                    <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-light-textSecondary'}`} style={{ fontFamily: '"Inter", sans-serif' }}>
                       {text}
                     </p>
                   </motion.div>
@@ -544,7 +564,7 @@ export default function About({ isDark }) {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
+      <div className={`absolute bottom-0 left-0 right-0 h-px ${isDark ? 'bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent' : 'bg-gradient-to-r from-transparent via-purple-500/30 to-transparent'}`} />
     </section>
   )
 }

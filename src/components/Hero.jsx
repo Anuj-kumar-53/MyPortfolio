@@ -80,19 +80,19 @@ export default function Hero({ isDark }) {
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center relative overflow-hidden ${isDark ? 'bg-dark-bg' : 'bg-gradient-to-br from-gray-100 to-gray-200/50'
+      className={`min-h-screen flex items-center relative overflow-hidden ${isDark ? 'bg-dark-bg' : 'bg-gradient-to-br from-light-bg to-light-surface'
         }`}
     >
       {/* Background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className={`blob absolute w-96 h-96 rounded-full blur-3xl opacity-20 -top-20 -left-20 ${isDark ? 'bg-indigo-600' : 'bg-indigo-300'}`} />
-        <div className={`blob blob-delay-1 absolute w-80 h-80 rounded-full blur-3xl opacity-15 top-1/3 right-0 ${isDark ? 'bg-purple-600' : 'bg-purple-300'}`} />
-        <div className={`blob blob-delay-2 absolute w-72 h-72 rounded-full blur-3xl opacity-10 bottom-10 left-1/3 ${isDark ? 'bg-blue-600' : 'bg-blue-300'}`} />
+        <div className={`blob absolute w-96 h-96 rounded-full blur-3xl opacity-20 -top-20 -left-20 ${isDark ? 'bg-[#D4AF37]' : 'bg-indigo-300'}`} />
+        <div className={`blob blob-delay-1 absolute w-80 h-80 rounded-full blur-3xl opacity-15 top-1/3 right-0 ${isDark ? 'bg-[#B8860B]' : 'bg-purple-300'}`} />
+        <div className={`blob blob-delay-2 absolute w-72 h-72 rounded-full blur-3xl opacity-10 bottom-10 left-1/3 ${isDark ? 'bg-[#8C6200]' : 'bg-blue-300'}`} />
         {isDark && (
           <div
             className="absolute inset-0 opacity-[0.04]"
             style={{
-              backgroundImage: 'linear-gradient(rgba(99,102,241,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.5) 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)',
               backgroundSize: '60px 60px',
             }}
           />
@@ -112,7 +112,7 @@ export default function Hero({ isDark }) {
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono mb-6 ${isDark ? 'bg-indigo-500/10 border border-indigo-500/30 text-indigo-300' : 'bg-indigo-50 border border-indigo-200 text-indigo-600'
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono mb-6 transition-colors ${isDark ? 'bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37]' : 'bg-light-surface border border-light-border text-light-accent shadow-sm'
                 }`}
             >
               <Sparkles size={14} />
@@ -121,7 +121,7 @@ export default function Hero({ isDark }) {
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}
-              className={`font-display font-bold leading-tight mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
+              className={`font-display font-bold leading-tight mb-4 ${isDark ? 'text-white' : 'text-light-textPrimary'}`}
               style={{ fontSize: 'clamp(2.1rem, 7vw, 4rem)' }}
             >
               Hello, I'm{' '}
@@ -130,7 +130,7 @@ export default function Hero({ isDark }) {
 
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-              className={`text-xl font-body font-medium mb-4 h-8 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}
+              className={`text-xl font-body font-medium mb-4 h-8 ${isDark ? 'text-gray-300' : 'text-light-textSecondary'}`}
             >
               <span className="gradient-text-alt">{displayText}</span>
               <span className="typing-cursor gradient-text-alt">|</span>
@@ -138,7 +138,7 @@ export default function Hero({ isDark }) {
 
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-              className={`text-base leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 ${isDark ? 'text-gray-400' : 'text-gray-700'}`}
+              className={`text-base leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0 ${isDark ? 'text-gray-400' : 'text-light-textSecondary'}`}
             >
               Full Stack Developer passionate about building scalable web applications and interactive user experiences.
               I love transforming complex problems into elegant, performant solutions.
@@ -147,7 +147,7 @@ export default function Hero({ isDark }) {
             {/* Highlights */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
               {['MERN Stack', 'DSA', 'Hackathons', 'Open Source'].map((tag) => (
-                <span key={tag} className={`px-3 py-1.5 rounded-lg text-sm font-mono font-medium ${isDark ? 'bg-white/5 border border-white/10 text-gray-300' : 'bg-white border border-gray-200 text-gray-800 shadow-sm'
+                <span key={tag} className={`px-3 py-1.5 rounded-lg text-sm font-mono font-medium ${isDark ? 'bg-[#D4AF37]/5 border border-[#D4AF37]/20 text-[#A39171]' : 'bg-light-card border border-light-border text-light-textPrimary shadow-sm'
                   }`}>
                   {tag}
                 </span>
@@ -159,9 +159,9 @@ export default function Hero({ isDark }) {
               <motion.a
                 href="/assets/Anuj_Kumar_Resume.pdf"
                 download="Anuj_Kumar_Resume.pdf"
-                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(99,102,241,0.5)' }} whileTap={{ scale: 0.97 }}
-                className="btn-shimmer flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-body font-semibold text-white text-sm w-full sm:w-auto"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)' }}
+                whileHover={{ scale: 1.05, boxShadow: isDark ? '0 0 30px rgba(212,175,55,0.4)' : '0 0 30px rgba(99,102,241,0.5)' }} whileTap={{ scale: 0.97 }}
+                className={`btn-shimmer flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-body font-semibold text-sm w-full sm:w-auto ${isDark ? 'text-black' : 'text-white'}`}
+                style={{ background: 'linear-gradient(135deg, #D4AF37, #B8860B)' }}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -173,7 +173,7 @@ export default function Hero({ isDark }) {
               <motion.button
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}
                 onClick={() => scrollTo('#contact')}
-                className={`flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-body font-semibold text-sm border transition-all w-full sm:w-auto ${isDark ? 'border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/10' : 'border-indigo-300 text-indigo-600 hover:bg-indigo-50'
+                className={`flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-body font-semibold text-sm border transition-all w-full sm:w-auto ${isDark ? 'border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37]/10' : 'border-light-border text-light-textPrimary bg-light-surface hover:bg-light-border/40'
                   }`}
               >
                 Contact Me
@@ -196,14 +196,13 @@ export default function Hero({ isDark }) {
                 transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 rounded-full overflow-hidden"
                 style={{
-                  background:
-                    "conic-gradient(from 0deg, #6366f1, #a855f7, #3b82f6, #6366f1)",
+                  background: "conic-gradient(from 0deg, #D4AF37, #B8860B, #FFDF73, #D4AF37)",
                   padding: "3px",
                   borderRadius: "50%",
                 }}
               >
                 <div
-                  className={`w-full h-full rounded-full ${isDark ? "bg-dark-bg" : "bg-gray-100"
+                  className={`w-full h-full rounded-full ${isDark ? "bg-dark-bg" : "bg-light-surface"
                     }`}
                 />
               </motion.div>
@@ -217,7 +216,7 @@ export default function Hero({ isDark }) {
                 transition={{ duration: 3, repeat: Infinity }}
                 className="absolute inset-0 rounded-full blur-2xl"
                 style={{
-                  background: "linear-gradient(135deg, #6366f1, #a855f7)",
+                  background: "linear-gradient(135deg, #D4AF37, #B8860B)",
                 }}
               />
 
@@ -271,10 +270,10 @@ export default function Hero({ isDark }) {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className={`text-xs font-mono ${isDark ? 'text-gray-600' : 'text-gray-500'}`}>scroll</span>
+          <span className={`text-xs font-mono tracking-widest ${isDark ? 'text-gray-600' : 'text-light-textSecondary/80'}`}>SCROLL</span>
           <motion.div
             animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}
-            className={`w-px h-10 ${isDark ? 'bg-gradient-to-b from-indigo-500/60 to-transparent' : 'bg-gradient-to-b from-indigo-400/60 to-transparent'}`}
+            className={`w-px h-10 ${isDark ? 'bg-gradient-to-b from-[#D4AF37]/60 to-transparent' : 'bg-gradient-to-b from-indigo-400/60 to-transparent'}`}
           />
         </motion.div>
       </div>

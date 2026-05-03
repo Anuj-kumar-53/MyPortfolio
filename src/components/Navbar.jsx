@@ -72,9 +72,9 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
             className="fixed top-0 left-0 right-0 z-50 px-6 py-4"
           >
             <div
-              className={`max-w-7xl mx-auto flex items-center justify-between h-14 px-6 rounded-2xl backdrop-blur-md ${isDark
-                  ? 'bg-white/[0.04] border border-white/[0.08]'
-                  : 'bg-black/[0.03] border border-black/[0.06]'
+              className={`max-w-7xl mx-auto flex items-center justify-between h-14 px-6 rounded-2xl backdrop-blur-md transition-all ${isDark
+                  ? 'bg-[#0D0D0D]/60 border border-[#D4AF37]/20 shadow-[0_0_15px_rgba(212,175,55,0.05)]'
+                  : 'bg-light-surface/50 border border-light-border/60'
                 }`}
             >
               {/* Logo */}
@@ -116,8 +116,8 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
           >
             <div
               className={`flex items-center gap-2 h-12 px-4 rounded-full backdrop-blur-2xl border transition-all ${isDark
-                  ? 'bg-[#130f2a]/90 border-indigo-500/30 shadow-[0_4px_30px_rgba(99,102,241,0.25)]'
-                  : 'bg-white/90 border-indigo-200 shadow-[0_4px_30px_rgba(99,102,241,0.12)]'
+                  ? 'bg-[#050505]/90 border-[#D4AF37]/30 shadow-[0_4px_30px_rgba(212,175,55,0.15)]'
+                  : 'bg-light-bg/90 border-light-border shadow-[0_4px_30px_rgba(216,162,94,0.1)]'
                 }`}
             >
               {/* Logo compact */}
@@ -141,7 +141,7 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
               </div>
 
               {/* Divider */}
-              <div className={`w-px h-5 mx-1 hidden md:block ${isDark ? 'bg-white/10' : 'bg-gray-200'}`} />
+              <div className={`w-px h-5 mx-1 hidden md:block ${isDark ? 'bg-white/10' : 'bg-light-border'}`} />
 
               <div className="flex items-center gap-2">
                 <ResumeDownloadBtn isDark={isDark} />
@@ -162,8 +162,8 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
             exit={{ opacity: 0, y: -10, scale: 0.97 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className={`fixed top-[4.5rem] left-4 right-4 z-40 rounded-2xl overflow-hidden backdrop-blur-2xl ${isDark
-              ? 'bg-[#130f2a]/96 border border-indigo-500/20'
-              : 'bg-white/96 border border-indigo-100'
+                ? 'bg-[#0D0D0D]/96 border border-[#D4AF37]/20 shadow-[0_10px_40px_rgba(0,0,0,0.8)]'
+                : 'bg-light-card/95 border border-light-border'
               } shadow-2xl`}
           >
             <div className="p-3 flex flex-col gap-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
@@ -176,11 +176,11 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
                   onClick={() => scrollTo(item.href)}
                   className={`w-full text-left px-4 py-3 rounded-xl font-body font-medium transition-all ${active === item.label
                       ? isDark
-                        ? 'text-indigo-300 bg-indigo-500/15 border border-indigo-500/25'
-                        : 'text-indigo-600 bg-indigo-50 border border-indigo-200'
+                        ? 'text-[#F5EFEB] bg-[#D4AF37]/15 border border-[#D4AF37]/25'
+                        : 'text-light-accent bg-light-surface border border-light-border'
                       : isDark
                         ? 'text-gray-200 hover:bg-white/5 hover:text-white'
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                        : 'text-light-textSecondary hover:bg-light-surface hover:text-light-textPrimary'
                     }`}
                 >
                   {item.label}
@@ -196,7 +196,7 @@ export default function Navbar({ isDark, toggleTheme, onViewAllProjects }) {
                 transition={{ delay: 0.3 }}
                 className={`mt-2 flex items-center justify-center gap-2 w-full py-4 rounded-xl font-body font-bold text-sm ${
                   isDark
-                    ? 'bg-indigo-500 text-white shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+                    ? 'bg-[#D4AF37] text-black shadow-[0_0_20px_rgba(212,175,55,0.4)]'
                     : 'bg-indigo-600 text-white shadow-[0_0_20px_rgba(79,70,229,0.3)]'
                 }`}
               >
@@ -226,15 +226,15 @@ function Logo({ isDark, onClick, compact }) {
     >
       <div
         className={`p-1.5 rounded-lg ${isDark
-            ? 'bg-indigo-500/20 border border-indigo-400/40 shadow-[0_0_10px_rgba(99,102,241,0.35)]'
+            ? 'bg-[#D4AF37]/10 border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.25)]'
             : 'bg-indigo-100 border border-indigo-300'
           }`}
       >
-        <Code2 size={compact ? 15 : 17} className="text-indigo-400" />
+        <Code2 size={compact ? 15 : 17} className={isDark ? "text-[#D4AF37]" : "text-indigo-400"} />
       </div>
       {!compact && (
         <span
-          className={`font-display font-bold text-lg tracking-tight  ${isDark ? 'text-white' : 'text-gray-900'
+          className={`font-display font-bold text-lg tracking-tight  ${isDark ? 'text-white' : 'text-light-textPrimary'
             }`}
         >
           Portfolio
@@ -253,19 +253,19 @@ function NavItem({ item, active, isDark, onClick, compact }) {
       whileTap={{ scale: 0.95 }}
       className={`relative px-3 py-1.5 rounded-full text-sm font-body font-semibold transition-colors ${active
           ? isDark
-            ? 'text-indigo-300'
-            : 'text-indigo-600'
+            ? 'text-[#D4AF37]'
+            : 'text-light-accent'
           : isDark
             ? 'text-gray-200 hover:text-white'   /* ← visible in dark */
-            : 'text-gray-700 hover:text-indigo-700' /* ← visible in light */
+            : 'text-light-textSecondary hover:text-light-textPrimary' /* ← visible in light */
         }`}
     >
       {active && (
         <motion.div
           layoutId="nav-active-pill"
           className={`absolute inset-0 rounded-full ${isDark
-              ? 'bg-indigo-500/20 border border-indigo-400/30'
-              : 'bg-indigo-100 border border-indigo-200'
+              ? 'bg-[#D4AF37]/20 border border-[#D4AF37]/30'
+              : 'bg-light-surface border border-light-border'
             }`}
           transition={{ type: 'spring', stiffness: 400, damping: 32 }}
         />
@@ -279,7 +279,7 @@ function NavItem({ item, active, isDark, onClick, compact }) {
 function MobileMenuBtn({ isDark, open, toggle }) {
   return (
     <button
-      className={`md:hidden p-1.5 rounded-full transition-colors ${isDark ? 'text-gray-200 hover:bg-white/10' : 'text-gray-700 hover:bg-gray-100'
+      className={`md:hidden p-1.5 rounded-full transition-colors ${isDark ? 'text-gray-200 hover:bg-white/10' : 'text-light-textSecondary hover:bg-light-surface'
         }`}
       onClick={toggle}
     >
@@ -314,7 +314,7 @@ function ScrollProgress() {
       className="fixed top-0 left-0 z-[9999] h-[2.5px] pointer-events-none"
       style={{
         width: `${pct}%`,
-        background: 'linear-gradient(90deg,#6366f1,#a855f7,#3b82f6)',
+        background: 'linear-gradient(90deg,#D4AF37,#B8860B,#FFDF73)',
         transition: 'width 0.1s linear',
       }}
     />
@@ -331,8 +331,8 @@ function ResumeDownloadBtn({ isDark }) {
       whileTap={{ scale: 0.95 }}
       className={`hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-body font-semibold border transition-all ${
         isDark
-          ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/25 hover:border-indigo-400/60'
-          : 'bg-indigo-50 border-indigo-300 text-indigo-600 hover:bg-indigo-100'
+          ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37] hover:bg-[#D4AF37]/20 hover:border-[#D4AF37]/60'
+          : 'bg-light-surface border-light-border text-light-textPrimary hover:bg-light-border/40'
       }`}
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
